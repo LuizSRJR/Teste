@@ -2,8 +2,8 @@
 // O código da planilha está em planilha/Codigo.gs.
 import { readDoc, mutate, MAX_ITENS } from './_lib.js';
 
-// Endereço do App da Web da planilha (fica vazio até a planilha ser conectada)
-const PLANILHA_URL_PADRAO = '';
+// Endereço do App da Web da planilha da família (Apps Script > Implantar > App da Web)
+const PLANILHA_URL_PADRAO = 'https://script.google.com/macros/s/AKfycbxAqZlLSUHVeRJ3z77c1uPjBDw0CllfaSVlv5_Pvw3TReQPzdMFUVIRR9CYtxBdUUcpLw/exec';
 // Mesma chave escrita no Codigo.gs (só impede que robôs aleatórios gravem na planilha)
 const CHAVE_PADRAO = 'bryan-Il-jMTQ3Mp1RsTzm4jlCWGNO';
 
