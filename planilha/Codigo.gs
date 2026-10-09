@@ -191,7 +191,7 @@ function formatarConvidados(aba) {
 function formatarEntrada(aba) {
   const s = separador();
   aba.getRange('A1').setValue('Chá do Bryan · Lista da entrada').setFontSize(16).setFontWeight('bold').setFontColor(COR.titulo);
-  aba.getRange('A2').setValue('Domingo, 29/11/2026, às 14h · Av. Dom Pedro I, 886 · Enseada, Guarujá – SP').setFontColor(COR.titulo);
+  aba.getRange('A2').setValue('Domingo, 29/11/2026, às 14h · Rua Dezesseis, última casa (ao lado da Center Castilho, Av. Dom Pedro I) · Jardim Três Marias, Guarujá – SP').setFontColor(COR.titulo);
   aba.getRange('A3').setFormula(
     '="Autorizadas: "&SUMPRODUCT((Convidados!B2:B<>"")*Convidados!F2:F)' +
     '&"     Aguardando: "&SUMPRODUCT((Convidados!B2:B<>"")*(1-Convidados!F2:F)*(1-Convidados!G2:G))' +

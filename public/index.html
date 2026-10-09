@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light">
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#CADCF6">
-<meta name="description" content="Você é nosso convidado! Chá do Bryan no domingo, 29 de novembro de 2026, às 14h, na Av. Dom Pedro I, 886, Enseada, Guarujá. Veja a sugestão de mimo e confirme sua presença na lista.">
+<meta name="description" content="Você é nosso convidado! Chá do Bryan no domingo, 29 de novembro de 2026, às 14h, na Rua Dezesseis, Jardim Três Marias (Enseada), Guarujá. Veja a sugestão de mimo e confirme sua presença na lista.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Chá do Bryan">
 <meta property="og:title" content="Chá do Bryan · 29/11/2026 · 14h">
-<meta property="og:description" content="Você é nosso convidado! Chá do Bryan no domingo, 29 de novembro de 2026, às 14h, na Av. Dom Pedro I, 886, Enseada, Guarujá. Veja a sugestão de mimo e confirme sua presença na lista.">
+<meta property="og:description" content="Você é nosso convidado! Chá do Bryan no domingo, 29 de novembro de 2026, às 14h, na Rua Dezesseis, Jardim Três Marias (Enseada), Guarujá. Veja a sugestão de mimo e confirme sua presença na lista.">
 <!-- Prévia do link no WhatsApp: se a Vercel gerar outro endereço, troque https://chadobryan.vercel.app nas duas linhas abaixo (veja o README) -->
 <meta property="og:url" content="https://chadobryan.vercel.app/">
 <meta property="og:image" content="https://chadobryan.vercel.app/og-image.jpg">
@@ -255,8 +255,16 @@ a{color:inherit}
 .place-address{font-style:normal;display:grid;gap:4px;justify-items:start}
 .place-street{font-family:var(--font-caps);font-weight:600;font-size:clamp(1.4rem,1.1rem + 1.3vw,2rem);letter-spacing:.05em;line-height:1.2;color:var(--deep)}
 .place-city{font-size:1.3rem;line-height:1.4;color:var(--ink)}
+.place-house{font-style:italic;font-size:1.22rem;line-height:1.35;color:var(--ink)}
 .place-cep{display:inline-block;margin-top:6px;padding:6px 12px;border-radius:8px;background:var(--sky-soft);font-family:var(--font-caps);font-weight:700;font-size:.88rem;letter-spacing:.12em;color:var(--deep)}
 .place-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.5rem}
+.route-title{margin:1.3rem 0 .55rem;font-family:var(--font-caps);font-weight:600;font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--label)}
+.route{list-style:none;counter-reset:rota;padding:0;margin:0;display:grid;gap:9px}
+.route li{counter-increment:rota;display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;font-size:1.06rem;line-height:1.4}
+.route li::before{content:counter(rota);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--sky-soft);border:1px solid var(--sky);font-family:var(--font-caps);font-weight:700;font-size:.82rem;color:var(--ink)}
+.route strong{color:var(--ink)}
+html.anim .place:not(.is-in) .mm-route{opacity:0}
+html.anim .place.is-in .mm-route{animation:fadeUp .6s ease .2s both}
 .copy-feedback{min-height:1.5em;margin:.7rem 0 0;font-style:italic;color:var(--label)}
 .sub-eyebrow{display:flex;align-items:center;gap:14px;max-width:820px;margin:0 auto clamp(20px,3vw,30px);font-family:var(--font-caps);font-weight:600;font-size:.84rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);text-align:center}
 .sub-eyebrow::before,.sub-eyebrow::after{content:"";flex:1;height:1px;background:var(--powder)}
@@ -691,8 +699,8 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
           <span class="t-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.8-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg></span>
           <div class="t-body">
             <p class="t-label">Onde</p>
-            <p class="t-value">Av. Dom Pedro I, 886</p>
-            <p class="t-sub">Enseada, Guarujá – SP<br><span class="nowrap">CEP 11440-001</span></p>
+            <p class="t-value">Rua Dezesseis, última casa</p>
+            <p class="t-sub">Jardim Três Marias, Guarujá – SP · <span class="nowrap">CEP 11440-274</span><br>A rua fica ao lado da loja Center Castilho, na Av. Dom Pedro I</p>
             <a class="t-link" href="#local">Ver como chegar<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
           </div>
         </div>
@@ -768,11 +776,11 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
         <p>O chá começa às <strong>14h</strong>. Logo abaixo estão o endereço, a sugestão de mimo e a lista de convidados para você confirmar sua presença.</p>
         <p class="signature">Com amor,<span>família do Bryan</span></p>
         <div class="cal-actions">
-          <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ch%C3%A1%20do%20Bryan&amp;dates=20261129T170000Z/20261129T210000Z&amp;ctz=America/Sao_Paulo&amp;details=Ch%C3%A1%20do%20Bryan%3A%20venha%20celebrar%20com%20a%20gente%20a%20chegada%20do%20nosso%20pequeno%20Bryan%21%20Come%C3%A7a%20%C3%A0s%2014h.%20Local%3A%20Av.%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-001.%20Sugest%C3%A3o%20de%20mimo%3A%20fraldas%2C%20len%C3%A7os%20umedecidos%20e%20itens%20b%C3%A1sicos%20para%20o%20beb%C3%AA.%20Confirme%20sua%20presen%C3%A7a%20na%20lista%3A%20https%3A%2F%2Fchadobryan.vercel.app%2F%23lista&amp;location=Avenida%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-001" target="_blank" rel="noopener">
+          <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ch%C3%A1%20do%20Bryan&amp;dates=20261129T170000Z/20261129T210000Z&amp;ctz=America/Sao_Paulo&amp;details=Ch%C3%A1%20do%20Bryan%3A%20venha%20celebrar%20com%20a%20gente%20a%20chegada%20do%20nosso%20pequeno%20Bryan%21%20Come%C3%A7a%20%C3%A0s%2014h.%20Local%3A%20Rua%20Dezesseis%2C%20%C3%BAltima%20casa%20da%20rua%20-%20Jardim%20Tr%C3%AAs%20Marias%20%28Enseada%29%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-274.%20A%20rua%20fica%20na%20Av.%20Dom%20Pedro%20I%2C%20ao%20lado%20da%20loja%20Center%20Castilho.%20Sugest%C3%A3o%20de%20mimo%3A%20fraldas%2C%20len%C3%A7os%20umedecidos%20e%20itens%20b%C3%A1sicos%20para%20o%20beb%C3%AA.%20Confirme%20sua%20presen%C3%A7a%20na%20lista%3A%20https%3A%2F%2Fchadobryan.vercel.app%2F%23lista&amp;location=R.%20Dezesseis%20-%20Jardim%20Tr%C3%AAs%20Marias%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-274" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
             Salvar no Google Agenda
           </a>
-          <a class="btn btn-ghost" href="https://outlook.live.com/calendar/0/action/compose?startdt=2026-11-29T14%3A00%3A00-03%3A00&amp;enddt=2026-11-29T18%3A00%3A00-03%3A00&amp;subject=Ch%C3%A1%20do%20Bryan&amp;body=Ch%C3%A1%20do%20Bryan%3A%20venha%20celebrar%20com%20a%20gente%20a%20chegada%20do%20nosso%20pequeno%20Bryan%21%20Come%C3%A7a%20%C3%A0s%2014h.%20Local%3A%20Av.%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-001.%20Sugest%C3%A3o%20de%20mimo%3A%20fraldas%2C%20len%C3%A7os%20umedecidos%20e%20itens%20b%C3%A1sicos%20para%20o%20beb%C3%AA.%20Confirme%20sua%20presen%C3%A7a%20na%20lista%3A%20https%3A%2F%2Fchadobryan.vercel.app%2F%23lista&amp;location=Avenida%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-001&amp;path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent" target="_blank" rel="noopener">
+          <a class="btn btn-ghost" href="https://outlook.live.com/calendar/0/action/compose?startdt=2026-11-29T14%3A00%3A00-03%3A00&amp;enddt=2026-11-29T18%3A00%3A00-03%3A00&amp;subject=Ch%C3%A1%20do%20Bryan&amp;body=Ch%C3%A1%20do%20Bryan%3A%20venha%20celebrar%20com%20a%20gente%20a%20chegada%20do%20nosso%20pequeno%20Bryan%21%20Come%C3%A7a%20%C3%A0s%2014h.%20Local%3A%20Rua%20Dezesseis%2C%20%C3%BAltima%20casa%20da%20rua%20-%20Jardim%20Tr%C3%AAs%20Marias%20%28Enseada%29%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-274.%20A%20rua%20fica%20na%20Av.%20Dom%20Pedro%20I%2C%20ao%20lado%20da%20loja%20Center%20Castilho.%20Sugest%C3%A3o%20de%20mimo%3A%20fraldas%2C%20len%C3%A7os%20umedecidos%20e%20itens%20b%C3%A1sicos%20para%20o%20beb%C3%AA.%20Confirme%20sua%20presen%C3%A7a%20na%20lista%3A%20https%3A%2F%2Fchadobryan.vercel.app%2F%23lista&amp;location=R.%20Dezesseis%20-%20Jardim%20Tr%C3%AAs%20Marias%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-274&amp;path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
             Outlook
           </a>
@@ -792,9 +800,9 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <h2 id="cd-title" class="script-h" data-reveal="write">Falta pouquinho, Bryan!</h2>
       <div class="balloons" role="timer" aria-live="off" data-reveal="group">
         <div class="bl bl-d"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-d">51</span><span class="unit" id="u-d">dias</span></div>
-        <div class="bl bl-h"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-h">07</span><span class="unit" id="u-h">horas</span></div>
-        <div class="bl bl-m"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-m">57</span><span class="unit" id="u-m">minutos</span></div>
-        <div class="bl bl-s"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-s">55</span><span class="unit" id="u-s">segundos</span></div>
+        <div class="bl bl-h"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-h">06</span><span class="unit" id="u-h">horas</span></div>
+        <div class="bl bl-m"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-m">12</span><span class="unit" id="u-m">minutos</span></div>
+        <div class="bl bl-s"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-s">25</span><span class="unit" id="u-s">segundos</span></div>
       </div>
       <p class="cd-note" id="cd-note" data-reveal style="--d:.5s">até domingo, 29 de novembro, às 14h, no Guarujá</p>
     </div>
@@ -805,41 +813,55 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <div class="secrets-head">
         <p class="eyebrow">Detalhes do chá</p>
         <h2 id="sec-title" class="script-h" data-reveal="write">Onde vai ser</h2>
-        <p class="section-lede">O local já está confirmado! Toque nos botões para abrir o caminho no mapa.</p>
+        <p class="section-lede">O local já está confirmado! Toque nos botões para abrir o caminho no mapa ou veja abaixo como chegar.</p>
       </div>
       <article class="place" id="local" aria-labelledby="place-title" data-reveal>
         <div class="place-art">
-          <svg class="minimap" viewBox="0 0 420 280" role="img" aria-label="Mapa ilustrado com um pino no número 886 da Avenida Dom Pedro I, na Enseada, em Guarujá">
+          <svg class="minimap" viewBox="0 0 420 280" role="img" aria-label="Mapa ilustrado: pela Avenida Dom Pedro I, entre na Rua Dezesseis, ao lado da loja Center Castilho, e siga até a última casa da rua, onde fica a festa">
             <defs><clipPath id="mm-clip"><rect width="420" height="280" rx="16"/></clipPath></defs>
             <g clip-path="url(#mm-clip)">
               <rect width="420" height="280" style="fill:var(--linen)"/>
               <g style="fill:var(--white)">
-                <rect x="18" y="22" width="92" height="60" rx="9"/><rect x="212" y="22" width="96" height="60" rx="9"/><rect x="322" y="22" width="84" height="60" rx="9"/>
-                <rect x="18" y="160" width="124" height="38" rx="9"/><rect x="156" y="160" width="100" height="38" rx="9"/><rect x="270" y="160" width="136" height="38" rx="9"/>
+                <rect x="16" y="10" width="104" height="34" rx="8"/><rect x="132" y="10" width="128" height="34" rx="8"/><rect x="272" y="10" width="132" height="34" rx="8"/>
+                <rect x="16" y="92" width="106" height="58" rx="8"/><rect x="16" y="160" width="100" height="62" rx="8"/>
               </g>
-              <rect x="124" y="22" width="74" height="60" rx="9" style="fill:var(--sky-soft)"/>
-              <g style="fill:var(--sky)"><circle cx="145" cy="45" r="10"/><circle cx="172" cy="57" r="12"/><circle cx="148" cy="68" r="7"/></g>
-              <path d="M-10 128C110 114 300 140 430 122" fill="none" style="stroke:var(--paper-edge)" stroke-width="40"/>
-              <path d="M-10 128C110 114 300 140 430 122" fill="none" style="stroke:var(--white)" stroke-width="34"/>
-              <path d="M-10 128C110 114 300 140 430 122" fill="none" style="stroke:var(--sand)" stroke-width="2.5" stroke-dasharray="11 9"/>
-              <text x="20" y="102" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:12px;letter-spacing:.14em;fill:var(--label)">AV. DOM PEDRO I</text>
-              <rect x="0" y="206" width="420" height="30" style="fill:var(--sand)"/>
-              <path d="M0 228C35 220 70 236 105 228S175 220 210 228 280 236 315 228 385 220 420 228V280H0Z" style="fill:var(--powder)"/>
-              <path d="M40 252q10-6 20 0t20 0M150 262q10-6 20 0t20 0M262 250q10-6 20 0t20 0" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round"/>
-              <text x="404" y="270" text-anchor="end" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:11px;letter-spacing:.2em;fill:var(--white)">ENSEADA · GUARUJÁ</text>
+              <path d="M-10 68H430" fill="none" style="stroke:var(--paper-edge)" stroke-width="30"/>
+              <path d="M-10 68H430" fill="none" style="stroke:var(--white)" stroke-width="25"/>
+              <path d="M-10 68H430" fill="none" style="stroke:var(--sand)" stroke-width="2.2" stroke-dasharray="11 9"/>
+              <text x="404" y="72" text-anchor="end" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:11px;letter-spacing:.14em;fill:var(--label)">AV. DOM PEDRO I</text>
+              <path d="M150 80V172" fill="none" style="stroke:var(--paper-edge)" stroke-width="24"/>
+              <path d="M150 80V172" fill="none" style="stroke:var(--white)" stroke-width="19"/>
+              <rect x="170" y="92" width="146" height="56" rx="8" style="fill:var(--white)"/>
+              <path d="M178 104h130M178 114h130M178 124h130M178 134h130" fill="none" style="stroke:var(--paper-edge)" stroke-width="2"/>
+              <rect x="190" y="111" width="106" height="20" rx="5" style="fill:var(--white)"/>
+              <text x="243" y="125" text-anchor="middle" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:8.6px;letter-spacing:.1em;fill:var(--placeholder)">CENTER CASTILHO</text>
+              <rect x="128" y="166" width="268" height="58" rx="12" style="fill:var(--sky-soft);stroke:var(--cornflower)" stroke-width="1.6" stroke-dasharray="6 5"/>
+              <path d="M138 184l16-11 16 11z" style="fill:var(--powder)"/>
+              <rect x="140" y="184" width="28" height="28" rx="3" style="fill:var(--white);stroke:var(--sky)" stroke-width="1.4"/>
+              <rect x="150" y="198" width="8" height="14" rx="1.5" style="fill:var(--sand)"/>
+              <rect x="186" y="182" width="58" height="28" rx="7" style="fill:var(--powder)"/>
+              <path d="M194 190q6-4 12 0t12 0 12 0M194 199q6-4 12 0t12 0 12 0" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="262" y="176" width="120" height="40" rx="4" style="fill:var(--cornflower)"/>
+              <path d="M262 196h120M322 176v40M272 184h100v24H272z" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>
+              <rect x="0" y="234" width="420" height="22" style="fill:var(--sand)"/>
+              <path d="M0 252C35 244 70 260 105 252S175 244 210 252 280 260 315 252 385 244 420 252V280H0Z" style="fill:var(--powder)"/>
+              <path d="M40 268q10-6 20 0t20 0M150 274q10-6 20 0t20 0M262 266q10-6 20 0t20 0" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round"/>
+              <text x="404" y="274" text-anchor="end" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:10px;letter-spacing:.2em;fill:var(--white)">ENSEADA · GUARUJÁ</text>
             </g>
-            <g transform="translate(236 126)">
+            <path class="mm-route" d="M28 68H150V104" fill="none" style="stroke:var(--cornflower)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray=".5 8"/>
+            <g transform="translate(150 170)">
               <ellipse class="pin-ripple" cx="0" cy="3" rx="13" ry="4.5" fill="none" style="stroke:var(--ink)" stroke-width="1.6"/>
               <ellipse cx="0" cy="3" rx="13" ry="4.5" fill="rgba(31,61,102,.22)"/>
               <g class="pin">
-                <path d="M0 0C-7-15-23-23-23-42a23 23 0 0 1 46 0C23-23 7-15 0 0z" style="fill:var(--ink)"/>
-                <use href="#heart" x="-10.5" y="-52" width="21" height="19" style="fill:var(--white)"/>
+                <path d="M0 0C-6-12-19-19-19-35a19 19 0 0 1 38 0C19-19 6-12 0 0z" style="fill:var(--ink)"/>
+                <use href="#heart" x="-9" y="-44" width="18" height="16" style="fill:var(--white)"/>
               </g>
             </g>
-            <g transform="translate(268 44)">
+            <g transform="translate(20 114)">
               <g class="pin-bubble">
-                <rect width="104" height="34" rx="10" style="fill:var(--white);stroke:var(--sky)" stroke-width="1.5"/>
-                <text x="52" y="22.5" text-anchor="middle" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;fill:var(--deep)">Nº 886</text>
+                <rect width="98" height="44" rx="10" style="fill:var(--white);stroke:var(--sky)" stroke-width="1.5"/>
+                <text x="49" y="18" text-anchor="middle" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:9px;letter-spacing:.12em;fill:var(--label)">R. DEZESSEIS</text>
+                <text x="49" y="35" text-anchor="middle" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:13px;letter-spacing:.02em;fill:var(--deep)">Última casa</text>
               </g>
             </g>
           </svg>
@@ -848,14 +870,21 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
           <p class="place-tag"><svg viewBox="0 0 24 22" aria-hidden="true"><use href="#heart"/></svg>Local confirmado</p>
           <h3 id="place-title" class="sr-only">Endereço do chá</h3>
           <address class="place-address" id="place-text">
-            <span class="place-street">Av. Dom Pedro I, 886</span>
-            <span class="place-city">Enseada, Guarujá – SP</span>
-            <span class="place-cep">CEP 11440-001</span>
+            <span class="place-street">Rua Dezesseis</span>
+            <span class="place-house">Última casa da rua</span>
+            <span class="place-city">Jardim Três Marias · Enseada, Guarujá – SP</span>
+            <span class="place-cep">CEP 11440-274</span>
           </address>
+          <p class="route-title">Como chegar</p>
+          <ol class="route">
+            <li><span>Pela <strong>Av. Dom Pedro I</strong>, procure a loja <strong>Center Castilho</strong> (nº 946).</span></li>
+            <li><span>Entre na <strong>Rua Dezesseis</strong>, a rua bem ao lado da loja.</span></li>
+            <li><span>Siga até o fim: a entrada é a <strong>última casa da rua</strong>.</span></li>
+          </ol>
           <div class="place-actions">
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-001" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.8-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>Abrir no Google Maps</a>
-            <a class="btn btn-ghost" href="https://waze.com/ul?q=Avenida%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-001&amp;navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5 3.5 10.6l7 2.4 2.4 7z"/></svg>Abrir no Waze</a>
-            <button class="btn btn-ghost" type="button" id="copy-addr" data-copy="Av. Dom Pedro I, 886 - Enseada, Guarujá - SP, CEP 11440-001"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="12" rx="2"/><path d="M15.5 5.5V5a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 5v9A1.5 1.5 0 0 0 6 15.5h.5"/></svg>Copiar endereço</button>
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=R.%20Dezesseis%20-%20Jardim%20Tr%C3%AAs%20Marias%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-274&amp;query_place_id=ChIJMSyjUdH_0ZQR2mPhme8GdaU" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.8-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>Abrir no Google Maps</a>
+            <a class="btn btn-ghost" href="https://waze.com/ul?ll=-23.9862,-46.24218&amp;navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5 3.5 10.6l7 2.4 2.4 7z"/></svg>Abrir no Waze</a>
+            <button class="btn btn-ghost" type="button" id="copy-addr" data-copy="Rua Dezesseis, última casa da rua - Jardim Três Marias (Enseada), Guarujá - SP, CEP 11440-274. A rua fica na Av. Dom Pedro I, ao lado da loja Center Castilho"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="12" rx="2"/><path d="M15.5 5.5V5a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 5v9A1.5 1.5 0 0 0 6 15.5h.5"/></svg>Copiar endereço</button>
           </div>
           <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
         </div>
@@ -1075,7 +1104,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
     var now=Date.now(),left=target-now;
     if(left<=0){
       show("d",0,"0");show("h",0,"00");show("m",0,"00");show("s",0,"00");
-      if(now<dayEnd){put(title,"Começou o chá do Bryan!");put(note,"Estamos te esperando na Av. Dom Pedro I, 886.");}
+      if(now<dayEnd){put(title,"Começou o chá do Bryan!");put(note,"Estamos te esperando na Rua Dezesseis, na última casa da rua.");}
       else{put(title,"O chá do Bryan aconteceu!");put(note,"Obrigado por todo o carinho com o nosso pequeno.");}
       if(timer){clearInterval(timer);timer=null;}
       return;
