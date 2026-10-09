@@ -1,6 +1,6 @@
 // POST /api/admin  ->  área da família (exige a senha no cabeçalho x-admin-key)
 // Ações: verificar, listar, status, adicionar, remover, apagarTudo
-import { json, readBody, isAdmin, all, load, save, remove, removeAll, clean, normDoc, idFor, randomId, isId, parseCompanions, sortItems } from './_lib.js';
+import { json, readBody, isAdmin, readDoc, mutate, removeAll, clean, normDoc, idFor, randomId, isId, parseCompanions, sortItems } from './_lib.js';
 
 const STATUS = ['pendente', 'aprovado', 'recusado'];
 
@@ -15,18 +15,22 @@ export default async function handler(req, res) {
       case 'verificar':
         return json(res, 200, { ok: true });
 
-      case 'listar':
-        return json(res, 200, { ok: true, itens: sortItems(await all()) });
+      case 'listar': {
+        const { itens } = await readDoc();
+        return json(res, 200, { ok: true, itens: sortItems(itens) });
+      }
 
       case 'status': {
         if (!isId(body.id) || !STATUS.includes(body.status)) return json(res, 400, { ok: false, erro: 'Pedido inválido.' });
-        const item = await load(body.id);
-        if (!item) return json(res, 404, { ok: false, erro: 'Convidado não encontrado. Atualize a lista.' });
-        item.status = body.status;
-        item.alteradoPeloConvidado = false;
-        item.atualizadoEm = agora;
-        await save(item);
-        return json(res, 200, { ok: true, item });
+        const out = await mutate((itens) => {
+          const item = itens.find((x) => x.id === body.id);
+          if (!item) return { semMudanca: true, status: 404, resposta: { ok: false, erro: 'Convidado não encontrado. Atualize a lista.' } };
+          item.status = body.status;
+          item.alteradoPeloConvidado = false;
+          item.atualizadoEm = agora;
+          return { status: 200, resposta: { ok: true, item } };
+        });
+        return json(res, out.status, out.resposta);
       }
 
       case 'adicionar': {
@@ -35,26 +39,36 @@ export default async function handler(req, res) {
         const doc = normDoc(documento);
         if (nome.length < 3) return json(res, 400, { ok: false, erro: 'Escreva o nome do convidado.' });
         const id = doc.length >= 5 ? idFor(doc) : randomId();
-        const anterior = await load(id);
-        const item = {
-          ...(anterior || {}),
-          id, nome, documento,
-          telefone: clean(body.telefone, 24),
-          acompanhantes: parseCompanions(body.acompanhantes),
-          status: 'aprovado',
-          origem: anterior ? anterior.origem : 'familia',
-          criadoEm: anterior ? anterior.criadoEm : agora,
-          atualizadoEm: agora,
-          alteradoPeloConvidado: false,
-        };
-        await save(item);
-        return json(res, 200, { ok: true, item });
+        const telefone = clean(body.telefone, 24);
+        const acompanhantes = parseCompanions(body.acompanhantes);
+        const out = await mutate((itens) => {
+          const i = itens.findIndex((x) => x.id === id);
+          const anterior = i >= 0 ? itens[i] : null;
+          const item = {
+            ...(anterior || {}),
+            id, nome, documento, telefone, acompanhantes,
+            status: 'aprovado',
+            origem: anterior ? anterior.origem : 'familia',
+            criadoEm: anterior ? anterior.criadoEm : agora,
+            atualizadoEm: agora,
+            alteradoPeloConvidado: false,
+          };
+          if (i >= 0) itens[i] = item; else itens.push(item);
+          return { status: 200, resposta: { ok: true, item } };
+        });
+        return json(res, out.status, out.resposta);
       }
 
-      case 'remover':
+      case 'remover': {
         if (!isId(body.id)) return json(res, 400, { ok: false, erro: 'Pedido inválido.' });
-        await remove(body.id);
+        await mutate((itens) => {
+          const i = itens.findIndex((x) => x.id === body.id);
+          if (i < 0) return { semMudanca: true };
+          itens.splice(i, 1);
+          return {};
+        });
         return json(res, 200, { ok: true });
+      }
 
       case 'apagarTudo': {
         if (body.confirmacao !== 'APAGAR') return json(res, 400, { ok: false, erro: 'Digite APAGAR para confirmar.' });

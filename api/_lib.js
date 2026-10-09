@@ -1,13 +1,19 @@
 // Lista de convidados do Chá do Bryan: funções compartilhadas pelas rotas /api.
-// Os dados ficam num Blob PRIVADO da Vercel (só a API, com o token do projeto, consegue ler).
+// Os dados ficam num único arquivo JSON dentro de um Blob PRIVADO da Vercel
+// (só a API, com o token do projeto, consegue ler). Um arquivo só = poucas operações
+// no plano gratuito, e cada gravação confere a versão (ETag) para ninguém apagar o pedido de outro.
 import crypto from 'node:crypto';
-import { put, get, list, del } from '@vercel/blob';
+import * as blob from '@vercel/blob';
 
-export const PREFIX = 'convidados/';
+export const DOC_PATH = 'lista/convidados.json';
+const LEGACY_PREFIX = 'convidados/'; // formato antigo (um arquivo por convidado)
+export const MAX_ITENS = 600;
 
 // Senha da família: só o hash fica no código (PBKDF2, 120 mil rodadas, com sal).
 const ADMIN_SALT = 'b8a3b17bec8a4e53302c876b0cf8a53f';
 const ADMIN_HASH = '5299edcab8a5a613ddf4df2b6402fe2d6f17aa99c47e673394563cfb1b222ee3';
+// Chave do autoteste técnico (GET /api/confirmar?diagnostico=...): também só o hash.
+const DIAG_HASH = 'a29a8419db065c6dcd21bdd152eea7d10ed5cf26edde0e44ef66b5e0df83a487';
 
 export function json(res, status, data) {
   res.statusCode = status;
@@ -17,12 +23,20 @@ export function json(res, status, data) {
   res.end(JSON.stringify(data));
 }
 
+function sameHash(gotBuf, expectedHex) {
+  const expected = Buffer.from(expectedHex, 'hex');
+  return gotBuf.length === expected.length && crypto.timingSafeEqual(gotBuf, expected);
+}
+
 export function isAdmin(req) {
   const key = req.headers['x-admin-key'];
   if (typeof key !== 'string' || key.length < 6 || key.length > 120) return false;
-  const got = crypto.pbkdf2Sync(key.trim(), ADMIN_SALT, 120000, 32, 'sha256');
-  const expected = Buffer.from(ADMIN_HASH, 'hex');
-  return got.length === expected.length && crypto.timingSafeEqual(got, expected);
+  return sameHash(crypto.pbkdf2Sync(key.trim(), ADMIN_SALT, 120000, 32, 'sha256'), ADMIN_HASH);
+}
+
+export function isDiag(value) {
+  if (typeof value !== 'string' || value.length < 10 || value.length > 120) return false;
+  return sameHash(crypto.createHash('sha256').update(value).digest(), DIAG_HASH);
 }
 
 export function clean(value, max) {
@@ -73,67 +87,107 @@ export async function readBody(req) {
   try { return JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}'); } catch { return {}; }
 }
 
-async function readJson(urlOrPathname) {
-  try {
-    // useCache: false garante a versão mais nova (logo depois de aprovar/recusar alguém)
-    const result = await get(urlOrPathname, { access: 'private', useCache: false });
-    if (!result || result.statusCode !== 200 || !result.stream) return null;
-    const text = await new Response(result.stream).text();
-    return JSON.parse(text);
-  } catch (err) {
-    if (err && /not.?found/i.test(String(err.name || err.message))) return null;
-    throw err;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Lê um arquivo privado. useCache: false garante a versão mais nova.
+async function readText(urlOrPathname) {
+  const result = await blob.get(urlOrPathname, { access: 'private', useCache: false });
+  if (!result || result.statusCode !== 200 || !result.stream) return null;
+  return { text: await new Response(result.stream).text(), etag: (result.blob && result.blob.etag) || null };
+}
+
+// Pedidos gravados no formato antigo (um arquivo por convidado), se existirem
+async function legacyItems() {
+  const page = await blob.list({ prefix: LEGACY_PREFIX, limit: 1000 });
+  const urls = page.blobs.map((b) => b.url || b.pathname);
+  const itens = [];
+  for (let i = 0; i < urls.length; i += 5) {
+    const parts = await Promise.all(urls.slice(i, i + 5).map(readText));
+    for (const p of parts) {
+      try { const item = p && JSON.parse(p.text); if (item && isId(item.id)) itens.push(item); } catch { /* ignora */ }
+    }
+  }
+  return { itens, urls };
+}
+
+// Lê a lista inteira: { itens, etag, legacyUrls }
+export async function readDoc() {
+  const found = await readText(DOC_PATH);
+  if (!found) {
+    const legacy = await legacyItems();
+    return { itens: legacy.itens, etag: null, legacyUrls: legacy.urls };
+  }
+  const data = JSON.parse(found.text); // se o arquivo estiver corrompido, melhor falhar do que sobrescrever
+  const itens = Array.isArray(data && data.itens) ? data.itens.filter((i) => i && isId(i.id)) : [];
+  return { itens, etag: found.etag, legacyUrls: [] };
+}
+
+function isConflict(err) {
+  if (!err) return false;
+  if (blob.BlobPreconditionFailedError && err instanceof blob.BlobPreconditionFailedError) return true;
+  return /precondition|already exists/i.test(String(err.name) + ' ' + String(err.message));
+}
+
+function isRateLimited(err) {
+  return Boolean(err) && /rate.?limit|too many requests/i.test(String(err.name) + ' ' + String(err.message));
+}
+
+// Altera a lista com segurança: lê, aplica fn(itens) e grava só se ninguém mudou o arquivo no meio.
+// fn pode devolver { semMudanca: true, ... } para não gravar nada.
+export async function mutate(fn) {
+  for (let attempt = 0; ; attempt++) {
+    const { itens, etag, legacyUrls } = await readDoc();
+    const out = fn(itens) || {};
+    if (out.semMudanca) return out;
+    const body = JSON.stringify({ versao: 1, atualizadoEm: new Date().toISOString(), itens });
+    try {
+      await blob.put(DOC_PATH, body, {
+        access: 'private',
+        contentType: 'application/json',
+        addRandomSuffix: false,
+        allowOverwrite: Boolean(etag),
+        ...(etag ? { ifMatch: etag } : {}),
+        cacheControlMaxAge: 60,
+      });
+    } catch (err) {
+      if (attempt >= 6 || !(isConflict(err) || isRateLimited(err))) throw err;
+      const wait = isRateLimited(err) ? 1000 * Math.min(Number(err.retryAfter) || 1, 3) : 0;
+      await sleep(wait + 80 + Math.random() * 220 * (attempt + 1));
+      continue;
+    }
+    if (legacyUrls.length) await blob.del(legacyUrls).catch(() => {});
+    return out;
   }
 }
 
-export async function load(id) {
-  return readJson(PREFIX + id + '.json');
-}
-
-export async function save(record) {
-  await put(PREFIX + record.id + '.json', JSON.stringify(record), {
-    access: 'private',
-    contentType: 'application/json',
-    addRandomSuffix: false,
-    allowOverwrite: true,
-  });
-}
-
-export async function remove(id) {
-  await del(PREFIX + id + '.json');
-}
-
-export async function ping() {
-  await list({ prefix: PREFIX, limit: 1 });
-}
-
-export async function all() {
-  const urls = [];
-  let cursor;
-  do {
-    const page = await list({ prefix: PREFIX, cursor, limit: 1000 });
-    for (const b of page.blobs) urls.push(b.url || b.pathname);
-    cursor = page.hasMore ? page.cursor : undefined;
-  } while (cursor);
-  const out = [];
-  for (let i = 0; i < urls.length; i += 16) {
-    const batch = await Promise.all(urls.slice(i, i + 16).map(readJson));
-    for (const item of batch) if (item && isId(item.id)) out.push(item);
-  }
-  return out;
-}
-
-// Apaga todos os arquivos da lista (usado no "Depois do chá")
+// Apaga a lista inteira ("Depois do chá"). Apagar não conta no limite do plano gratuito.
 export async function removeAll() {
-  const urls = [];
-  let cursor;
-  do {
-    const page = await list({ prefix: PREFIX, cursor, limit: 1000 });
-    for (const b of page.blobs) urls.push(b.url || b.pathname);
-    cursor = page.hasMore ? page.cursor : undefined;
-  } while (cursor);
-  for (let i = 0; i < urls.length; i += 100) await del(urls.slice(i, i + 100));
-  return urls.length;
+  const { itens, legacyUrls } = await readDoc();
+  await blob.del([DOC_PATH, ...legacyUrls]);
+  return itens.length;
+}
+
+// Autoteste técnico: grava, lê, testa a trava de versão e apaga um arquivo de teste.
+export async function diagnose() {
+  const path = 'saude/autoteste.json';
+  const stamp = new Date().toISOString();
+  const steps = {};
+  await blob.put(path, JSON.stringify({ stamp }), { access: 'private', contentType: 'application/json', addRandomSuffix: false, allowOverwrite: true });
+  steps.put = true;
+  const back = await readText(path);
+  steps.get = Boolean(back && JSON.parse(back.text).stamp === stamp);
+  steps.etag = Boolean(back && back.etag);
+  try {
+    await blob.put(path, '{}', { access: 'private', contentType: 'application/json', addRandomSuffix: false, allowOverwrite: true, ifMatch: '"etag-que-nao-existe"' });
+    steps.trava = false;
+  } catch (err) {
+    steps.trava = isConflict(err);
+    if (!steps.trava) steps.travaErro = String(err && (err.name + ': ' + err.message)).slice(0, 200);
+  }
+  await blob.del(path);
+  steps.del = true;
+  steps.semArquivo = (await readText(path)) === null;
+  return steps;
 }
 
 const ORDER = { pendente: 0, aprovado: 1, recusado: 2 };

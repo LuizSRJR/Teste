@@ -14,7 +14,7 @@ Convite online do chá de bebê do Bryan (domingo, 29/11/2026, às 14h) com list
 
 ## Onde ficam os dados
 
-Os pedidos ficam num **Vercel Blob privado** ligado a este projeto (variável `BLOB_READ_WRITE_TOKEN`, criada pela própria Vercel).
+Os pedidos ficam num único arquivo JSON dentro de um **Vercel Blob privado** ligado a este projeto (variável `BLOB_READ_WRITE_TOKEN`, criada pela própria Vercel). Cada gravação confere a versão do arquivo, então dois convidados enviando ao mesmo tempo não apagam o pedido um do outro.
 Nada da lista aparece no site nem neste repositório. A senha da família também não fica aqui: o código guarda só um "hash" dela.
 
 Depois do chá, use o botão **Apagar tudo** na área da família para apagar os documentos dos convidados.
