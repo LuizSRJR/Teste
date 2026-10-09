@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light">
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#CADCF6">
-<meta name="description" content="Save the Date! Chá do Bryan no domingo, 29 de novembro de 2026, na Av. Dom Pedro I, 886, Enseada, Guarujá. Veja os detalhes e mande um carinho para o Bryan.">
+<meta name="description" content="Você é nosso convidado! Chá do Bryan no domingo, 29 de novembro de 2026, às 14h, na Av. Dom Pedro I, 886, Enseada, Guarujá. Veja a sugestão de mimo e confirme sua presença na lista.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -15,8 +15,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Chá do Bryan">
-<meta property="og:title" content="Chá do Bryan · 29/11/2026">
-<meta property="og:description" content="Save the Date! Chá do Bryan no domingo, 29 de novembro de 2026, na Av. Dom Pedro I, 886, Enseada, Guarujá. Veja os detalhes e mande um carinho para o Bryan.">
+<meta property="og:title" content="Chá do Bryan · 29/11/2026 · 14h">
+<meta property="og:description" content="Você é nosso convidado! Chá do Bryan no domingo, 29 de novembro de 2026, às 14h, na Av. Dom Pedro I, 886, Enseada, Guarujá. Veja a sugestão de mimo e confirme sua presença na lista.">
 <!-- Prévia do link no WhatsApp: se a Vercel gerar outro endereço, troque https://teste-inky-three.vercel.app nas duas linhas abaixo (veja o README) -->
 <meta property="og:url" content="https://teste-inky-three.vercel.app/">
 <meta property="og:image" content="https://teste-inky-three.vercel.app/og-image.jpg">
@@ -43,6 +43,7 @@
   --ink:#2D5A8E;
   --deep:#1F3D66;
   --label:#3D69A6;
+  --error:#A8473F;
   --placeholder:#7E92AF;
   --honey:#BE9367;
   --sand:#EAD8BF;
@@ -301,6 +302,61 @@ a{color:inherit}
 .btn-send{justify-content:center;width:100%;font-size:.8rem;padding:16px 22px}
 .note-help{margin:0;font-size:1.02rem;font-style:italic;line-height:1.45;color:var(--label);text-align:center}
 
+
+/* ---------- Ticket call to action ---------- */
+.ticket-cta{display:flex;justify-content:center;margin:clamp(18px,3vw,26px) 0 0}
+.ticket-cta .btn{font-size:.8rem;padding:16px 26px}
+.ticket-cta .btn svg{stroke-width:2.2}
+
+/* ---------- Opened envelopes: time and gift list ---------- */
+.envelopes.revealed .secret{grid-template-columns:minmax(0,1fr);text-align:left;gap:14px;align-content:start;background:var(--white);border:1px solid var(--sky);border-radius:18px;padding:clamp(18px,3vw,26px);box-shadow:0 22px 44px -32px var(--shadow)}
+.env-fig{margin:0 auto;width:100%;max-width:210px}
+.env-fig svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 12px 14px rgba(31,61,102,.12))}
+.envelopes.revealed .secret h3{justify-content:flex-start}
+.envelopes.revealed .secret p{max-width:none;margin-inline:0}
+.plan-big{font-family:var(--font-caps);font-weight:700;font-size:clamp(2.4rem,1.8rem + 2.4vw,3.2rem);line-height:1;color:var(--deep);margin:.1rem 0 .4rem!important}
+.mimo-list{list-style:none;padding:0;margin:.7rem 0 .9rem;display:grid;gap:8px}
+.mimo-list li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;line-height:1.4}
+.mimo-list li::before{content:"";width:18px;height:17px;margin-top:4px;background:var(--honey);-webkit-mask:var(--heart-mask) center/contain no-repeat;mask:var(--heart-mask) center/contain no-repeat}
+.mimo-note{font-style:italic;color:var(--ink)}
+@media (min-width:780px){
+  .envelopes.revealed{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);max-width:980px;align-items:start}
+  .envelopes.revealed .secret{text-align:left}
+  .envelopes.revealed .secret h3{justify-content:flex-start}
+  .envelopes.revealed .secret p{max-width:none;margin-inline:0}
+}
+html.anim .secret:not(.is-in) .env-card{transform:translateY(46px)}
+html.anim .secret.is-in .env-card{animation:cardUp 1s cubic-bezier(.2,.8,.2,1) calc(var(--d,0s) + .35s) both}
+
+/* ---------- Guest list ---------- */
+.guests{position:relative;padding-block:clamp(68px,10vw,124px);background:var(--paper)}
+.guests-grid{display:grid;gap:clamp(26px,4vw,56px);align-items:start}
+@media (min-width:880px){.guests-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)}}
+.guests-intro,.guests-side{min-width:0}
+.guests-intro .lede{font-size:1.18em;line-height:1.5;margin:0 0 1.3rem;max-width:30em}
+.steps{list-style:none;counter-reset:passo;padding:0;margin:0 0 1.3rem;display:grid;gap:14px}
+.steps li{counter-increment:passo;display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:center;line-height:1.45}
+.steps li::before{content:counter(passo);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--sky-soft);border:1px solid var(--sky);font-family:var(--font-caps);font-weight:700;color:var(--ink)}
+.steps strong{color:var(--ink)}
+.privacy{display:flex;gap:10px;align-items:flex-start;margin:0;max-width:30em;font-size:1.02rem;font-style:italic;color:var(--label)}
+.privacy svg{width:20px;height:20px;flex:none;margin-top:3px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+.guest-form,.guest-done{margin:0;max-width:none}
+.opt{font-family:var(--font-text);font-weight:500;font-style:italic;letter-spacing:0;text-transform:none}
+.companions{display:grid;gap:10px;padding:14px;border:1px dashed var(--powder);border-radius:14px;background:var(--sky-soft)}
+.comp-title{margin:0;font-family:var(--font-caps);font-weight:600;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--label)}
+.g-comps{display:grid;gap:10px}
+.g-comp{display:grid;gap:8px;padding:12px;border:1px solid var(--sky);border-radius:12px;background:var(--white)}
+.g-comp-head{display:flex;align-items:center;justify-content:space-between;font-family:var(--font-caps);font-weight:700;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.g-comp-del{appearance:none;background:none;border:0;padding:4px;cursor:pointer;font:inherit;font-family:var(--font-text);font-size:.98rem;font-style:italic;letter-spacing:0;text-transform:none;text-decoration:underline;color:var(--label)}
+.btn-add{justify-content:center;width:100%;padding:12px 16px;font-size:.72rem;background:var(--white)}
+.consent{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:1.02rem;line-height:1.45;color:var(--deep)}
+.consent input{flex:none;width:20px;height:20px;margin-top:3px;accent-color:var(--ink)}
+.hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important}
+.form-msg{min-height:1.4em;margin:0;text-align:center;font-weight:600;color:var(--error)}
+.guest-done{text-align:center;justify-items:center}
+.done-script{margin:0;font-family:var(--font-script);font-size:3.2rem;line-height:1;color:var(--ink)}
+.guest-done p{margin:0}
+
 /* ---------- Music box ---------- */
 .music{position:fixed;z-index:30;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border:0;border-radius:999px;background:var(--deep);color:var(--paper);font-family:var(--font-caps);font-weight:600;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 26px -10px rgba(31,61,102,.55);transition:transform .2s,background-color .2s}
 .music:hover{transform:translateY(-2px);background:var(--ink)}
@@ -396,8 +452,6 @@ html.anim .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
 html.anim .place.is-in .pin{animation:pinDrop .9s cubic-bezier(.3,1.45,.5,1) .35s both}
 html.anim .place.is-in .pin-ripple{animation:ripple 1.6s ease-out 1.1s 3}
 html.anim .place.is-in .pin-bubble{animation:popIn .5s cubic-bezier(.3,1.5,.5,1) 1.15s both}
-html.anim .secret.is-in .env svg{animation:nudge .9s ease calc(var(--d,0s) + .9s) 1}
-html.anim .secret.is-in .env.wiggle svg{animation:wiggle .7s ease}
 html.anim .cal-wrap .cal-heart .line{stroke-dasharray:1 1;stroke-dashoffset:1}
 html.anim .cal-wrap .cal-heart .fill{opacity:0;transition:opacity .8s ease 1.5s}
 html.anim .cal-wrap.is-in .cal-heart .line{animation:draw 1.2s ease .7s forwards}
@@ -442,6 +496,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
 @keyframes ripple{0%{opacity:.7;transform:scale(.4)}100%{opacity:0;transform:scale(3)}}
 @keyframes nudge{0%,100%{transform:rotate(0)}30%{transform:rotate(-2.5deg)}60%{transform:rotate(2deg)}}
 @keyframes draw{to{stroke-dashoffset:0}}
+@keyframes cardUp{from{transform:translateY(46px)}to{transform:translateY(0)}}
 @keyframes tickPop{0%,100%{transform:translateX(-50%) scale(1)}40%{transform:translateX(-50%) scale(1.12)}}
 @keyframes noteUp{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(12px,-46px) rotate(18deg)}}
 @keyframes sealPop{0%{transform:translateX(-50%) scale(1)}35%{transform:translateX(-50%) scale(1.18)}100%{opacity:0;transform:translateX(-50%) scale(0)}}
@@ -499,13 +554,22 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <circle cx="110" cy="94" r="14.5" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
       <text x="110" y="96" text-anchor="middle" dominant-baseline="middle" style="font-family:'Pinyon Script','Snell Roundhand',cursive;font-size:25px;fill:var(--paper)">B</text>
     </symbol>
+    <symbol id="env-open-back" viewBox="0 0 220 176">
+      <path d="M6 60 110 4 214 60Z" style="fill:url(#gh)"/>
+      <path d="M6 60 110 4 214 60" fill="none" style="stroke:var(--powder)" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="6" y="58" width="208" height="112" rx="7" style="fill:var(--white);stroke:var(--sky)" stroke-width="2"/>
+    </symbol>
+    <symbol id="env-open-front" viewBox="0 0 220 176">
+      <path d="M6 60 110 124 214 60V164a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6Z" style="fill:var(--white);stroke:var(--sky)" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M9 167 95 113M211 167 125 113" fill="none" style="stroke:var(--sky)" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
   </defs>
 </svg>
 
 <div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="intro-title">
   <div class="intro-stage">
     <p class="intro-kicker" id="intro-title">Você recebeu um convite</p>
-    <p class="intro-sub">Chá do Bryan · 29.11.2026</p>
+    <p class="intro-sub">Chá do Bryan · 29.11.2026 · 14h</p>
     <div class="env3d" aria-hidden="true">
       <div class="env-back"></div>
       <div class="env-letter"><span class="el-script">Bem-vindo,</span><span class="el-name">BRYAN</span><span class="el-date">29 · 11 · 2026</span></div>
@@ -573,6 +637,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
           <div class="t-body">
             <p class="t-label">Quando</p>
             <p class="t-value">Domingo, 29 de novembro de 2026</p>
+            <p class="t-sub">às 14h</p>
           </div>
         </div>
         <div class="t-item">
@@ -585,14 +650,16 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
           </div>
         </div>
         <div class="t-item">
-          <span class="t-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.6V12l3 2"/></svg></span>
+          <span class="t-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="9.5" width="16" height="10.5" rx="1.4"/><path d="M3 9.5h18M12 9.5V20M12 9.5c-1.3-2.9-4.8-3.9-5.4-1.9-.5 1.6 2.3 1.9 5.4 1.9zm0 0c1.3-2.9 4.8-3.9 5.4-1.9.5 1.6-2.3 1.9-5.4 1.9z"/></svg></span>
           <div class="t-body">
-            <p class="t-label">Horário e mimo</p>
-            <p class="t-value">Em breve</p>
-            <p class="t-sub">Chegam junto com o convite completo.</p>
+            <p class="t-label">Sugestão de mimo</p>
+            <p class="t-value">Fraldas e itens básicos</p>
+            <p class="t-sub">Lenços umedecidos, pomada e afins</p>
+            <a class="t-link" href="#mimo">Ver sugestões<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
           </div>
         </div>
       </div>
+      <p class="ticket-cta" data-reveal style="--d:.25s"><a class="btn" href="#lista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Confirmar presença na lista</a></p>
     </div>
   </section>
   <section class="std" aria-labelledby="std-title">
@@ -651,19 +718,19 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
         <h2 id="std-title" class="script-h" data-reveal="write" style="--d:.35s">Reserve esta data</h2>
         <p class="lede">Com muita alegria, queremos compartilhar com vocês essa data especial!</p>
         <p>Reserve o dia <strong>29/11</strong> para celebrarmos juntos a chegada do nosso pequeno Bryan.</p>
-        <p>Em breve enviaremos o convite completo com o horário e a sugestão de mimo.</p>
+        <p>O chá começa às <strong>14h</strong>. Logo abaixo estão o endereço, a sugestão de mimo e a lista de convidados para você confirmar sua presença.</p>
         <p class="signature">Com amor,<span>família do Bryan</span></p>
         <div class="cal-actions">
-          <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ch%C3%A1%20do%20Bryan&amp;dates=20261129/20261130&amp;details=Save%20the%20Date%21%20Reserve%20o%20dia%20para%20celebrarmos%20juntos%20a%20chegada%20do%20nosso%20pequeno%20Bryan.%20Local%3A%20Av.%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-001.%20O%20hor%C3%A1rio%20e%20a%20sugest%C3%A3o%20de%20mimo%20chegam%20com%20o%20convite%20completo.&amp;location=Avenida%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-001" target="_blank" rel="noopener">
+          <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ch%C3%A1%20do%20Bryan&amp;dates=20261129T170000Z/20261129T210000Z&amp;ctz=America/Sao_Paulo&amp;details=Ch%C3%A1%20do%20Bryan%3A%20venha%20celebrar%20com%20a%20gente%20a%20chegada%20do%20nosso%20pequeno%20Bryan%21%20Come%C3%A7a%20%C3%A0s%2014h.%20Local%3A%20Av.%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-001.%20Sugest%C3%A3o%20de%20mimo%3A%20fraldas%2C%20len%C3%A7os%20umedecidos%20e%20itens%20b%C3%A1sicos%20para%20o%20beb%C3%AA.%20Confirme%20sua%20presen%C3%A7a%20na%20lista%3A%20https%3A%2F%2Fteste-inky-three.vercel.app%2F%23lista&amp;location=Avenida%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-001" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
             Salvar no Google Agenda
           </a>
-          <a class="btn btn-ghost" href="https://outlook.live.com/calendar/0/action/compose?allday=true&amp;startdt=2026-11-29&amp;enddt=2026-11-30&amp;subject=Ch%C3%A1%20do%20Bryan&amp;body=Save%20the%20Date%21%20Reserve%20o%20dia%20para%20celebrarmos%20juntos%20a%20chegada%20do%20nosso%20pequeno%20Bryan.%20Local%3A%20Av.%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-001.%20O%20hor%C3%A1rio%20e%20a%20sugest%C3%A3o%20de%20mimo%20chegam%20com%20o%20convite%20completo.&amp;location=Avenida%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-001&amp;path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent" target="_blank" rel="noopener">
+          <a class="btn btn-ghost" href="https://outlook.live.com/calendar/0/action/compose?startdt=2026-11-29T14%3A00%3A00-03%3A00&amp;enddt=2026-11-29T18%3A00%3A00-03%3A00&amp;subject=Ch%C3%A1%20do%20Bryan&amp;body=Ch%C3%A1%20do%20Bryan%3A%20venha%20celebrar%20com%20a%20gente%20a%20chegada%20do%20nosso%20pequeno%20Bryan%21%20Come%C3%A7a%20%C3%A0s%2014h.%20Local%3A%20Av.%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-001.%20Sugest%C3%A3o%20de%20mimo%3A%20fraldas%2C%20len%C3%A7os%20umedecidos%20e%20itens%20b%C3%A1sicos%20para%20o%20beb%C3%AA.%20Confirme%20sua%20presen%C3%A7a%20na%20lista%3A%20https%3A%2F%2Fteste-inky-three.vercel.app%2F%23lista&amp;location=Avenida%20Dom%20Pedro%20I%2C%20886%20-%20Enseada%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-001&amp;path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
             Outlook
           </a>
         </div>
-        <p class="cal-hint">Por enquanto o lembrete ocupa o dia todo. O horário chega com o convite completo.</p>
+        <p class="cal-hint">O lembrete já vai com o horário e o endereço.</p>
       </div>
     </div>
   </section>
@@ -677,12 +744,12 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <p class="eyebrow">Contagem regressiva</p>
       <h2 id="cd-title" class="script-h" data-reveal="write">Falta pouquinho, Bryan!</h2>
       <div class="balloons" role="timer" aria-live="off" data-reveal="group">
-        <div class="bl bl-d"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-d">50</span><span class="unit" id="u-d">dias</span></div>
-        <div class="bl bl-h"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-h">19</span><span class="unit" id="u-h">horas</span></div>
-        <div class="bl bl-m"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-m">28</span><span class="unit" id="u-m">minutos</span></div>
-        <div class="bl bl-s"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-s">30</span><span class="unit" id="u-s">segundos</span></div>
+        <div class="bl bl-d"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-d">51</span><span class="unit" id="u-d">dias</span></div>
+        <div class="bl bl-h"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-h">08</span><span class="unit" id="u-h">horas</span></div>
+        <div class="bl bl-m"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-m">57</span><span class="unit" id="u-m">minutos</span></div>
+        <div class="bl bl-s"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-s">07</span><span class="unit" id="u-s">segundos</span></div>
       </div>
-      <p class="cd-note" id="cd-note" data-reveal style="--d:.5s">até domingo, 29 de novembro de 2026, no Guarujá</p>
+      <p class="cd-note" id="cd-note" data-reveal style="--d:.5s">até domingo, 29 de novembro, às 14h, no Guarujá</p>
     </div>
   </section>
 
@@ -746,45 +813,83 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
           <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
         </div>
       </article>
-      <p class="sub-eyebrow">Chegam com o convite completo</p>
-      <ul class="envelopes">
+      <p class="sub-eyebrow">Para você se programar</p>
+      <ul class="envelopes revealed">
         <li class="secret" data-reveal style="--d:.05s">
-          <button class="env" type="button" data-msg="Segredinho por enquanto!" aria-label="Horário do chá, ainda em segredo">
-            <svg viewBox="0 0 220 150" aria-hidden="true"><use href="#envelope"/></svg>
-          </button>
+          <figure class="env-fig" aria-hidden="true">
+            <svg viewBox="0 0 220 176"><use href="#env-open-back"/><g class="env-card"><rect x="30" y="20" width="160" height="124" rx="6" style="fill:var(--paper);stroke:var(--sky)" stroke-width="1.5"/><text x="110" y="62" text-anchor="middle" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:30px;fill:var(--deep)">14h</text></g><use href="#env-open-front"/></svg>
+          </figure>
           <div class="secret-text">
             <h3><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.6V12l3 2"/></svg>Horário</h3>
-            <p>A hora certinha da festa vem no mesmo convite.</p>
-            <span class="tag">Em breve</span>
+            <p class="plan-big">14h</p>
+            <p>Domingo, 29 de novembro de 2026.</p>
+            <a class="t-link" href="#lista">Confirmar presença<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
           </div>
-          <p class="whisper" aria-live="polite"></p>
         </li>
-        <li class="secret" data-reveal style="--d:.2s">
-          <button class="env" type="button" data-msg="Já já a gente conta!" aria-label="Sugestão de mimo, ainda em segredo">
-            <svg viewBox="0 0 220 150" aria-hidden="true"><use href="#envelope"/></svg>
-          </button>
+        <li class="secret" id="mimo" data-reveal style="--d:.2s">
+          <figure class="env-fig" aria-hidden="true">
+            <svg viewBox="0 0 220 176"><use href="#env-open-back"/><g class="env-card"><rect x="30" y="20" width="160" height="124" rx="6" style="fill:var(--paper);stroke:var(--sky)" stroke-width="1.5"/><g transform="translate(110 54)"><path d="M-17 -6h34v22h-34z M-20 -12h40v6h-40z M0 -12v28 M0 -12c-3-7-11-9-12-4-1 4 5 4 12 4zm0 0c3-7 11-9 12-4 1 4-5 4-12 4z" fill="none" style="stroke:var(--ink)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></g></g><use href="#env-open-front"/></svg>
+          </figure>
           <div class="secret-text">
             <h3><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9.5" width="16" height="10.5" rx="1.4"/><path d="M3 9.5h18M12 9.5V20M12 9.5c-1.3-2.9-4.8-3.9-5.4-1.9-.5 1.6 2.3 1.9 5.4 1.9zm0 0c1.3-2.9 4.8-3.9 5.4-1.9.5 1.6-2.3 1.9-5.4 1.9z"/></svg>Sugestão de mimo</h3>
-            <p>Vamos contar o que o Bryan mais vai precisar.</p>
-            <span class="tag">Em breve</span>
+            <p>Itens básicos que vão ajudar muito nos primeiros meses do Bryan:</p>
+            <ul class="mimo-list">
+              <li>Fraldas (tamanhos P, M ou G)</li>
+              <li>Lenços umedecidos</li>
+              <li>Pomada para assaduras</li>
+              <li>Sabonete líquido e shampoo de bebê</li>
+              <li>Algodão e hastes flexíveis</li>
+              <li>Toalhinhas e fraldas de pano</li>
+            </ul>
+            <p class="mimo-note">Escolha o que preferir. O mais importante é a sua presença!</p>
           </div>
-          <p class="whisper" aria-live="polite"></p>
         </li>
       </ul>
     </div>
   </section>
 
-  <section class="meaning" aria-labelledby="name-title">
-    <div class="wrap meaning-grid">
-      <div class="meaning-name">
-        <p class="eyebrow">O significado do nome</p>
-        <h2 id="name-title" class="huge" data-reveal="write">Bryan</h2>
-        <p class="origin">Origem celta e gaélica</p>
+  <section class="guests" id="lista" aria-labelledby="lista-title">
+    <div class="wrap guests-grid">
+      <div class="guests-intro" data-reveal>
+        <p class="eyebrow">Lista de convidados</p>
+        <h2 id="lista-title" class="script-h" data-reveal="write">Confirme sua presença</h2>
+        <p class="lede">Para organizar a entrada no dia, precisamos do nome completo e de um documento de cada pessoa.</p>
+        <ol class="steps">
+          <li><span><strong>Você envia</strong> seu nome, documento e quem vem com você.</span></li>
+          <li><span><strong>A família confere</strong> e aprova os nomes da lista.</span></li>
+          <li><span><strong>No dia</strong>, é só dizer seu nome na entrada.</span></li>
+        </ol>
+        <p class="privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>Seus dados ficam guardados só com a família e não aparecem no site.</p>
       </div>
-      <div class="meaning-text" data-reveal style="--d:.2s">
-        <p class="lede">Bryan nasceu como variante de Brian e se liga à raiz celta <em>bre</em>, que quer dizer “colina”. Daí vêm os significados que o nome carrega:</p>
-        <ul class="virtues" data-reveal="group"><li>Nobre</li><li>Forte</li><li>Virtuoso</li></ul>
-        <p class="wish">Tudo o que desejamos para o nosso pequeno.</p>
+      <div class="guests-side">
+        <form class="note-card guest-form" id="guest-form" novalidate data-reveal style="--d:.15s">
+          <div class="field">
+            <label for="g-nome">Nome completo</label>
+            <input id="g-nome" name="nome" type="text" autocomplete="name" maxlength="80" placeholder="Como está no documento">
+          </div>
+          <div class="field">
+            <label for="g-doc">Documento (RG ou CPF)</label>
+            <input id="g-doc" name="documento" type="text" autocomplete="off" maxlength="24" placeholder="Ex.: 12.345.678-9">
+          </div>
+          <div class="field">
+            <label for="g-tel">WhatsApp <span class="opt">(opcional)</span></label>
+            <input id="g-tel" name="telefone" type="tel" autocomplete="tel" maxlength="24" placeholder="(13) 99999-9999">
+          </div>
+          <div class="companions">
+            <p class="comp-title">Quem vem com você?</p>
+            <div class="g-comps" id="g-comps"></div>
+            <button class="btn btn-ghost btn-add" type="button" id="g-add">+ Adicionar acompanhante</button>
+          </div>
+          <label class="consent" for="g-ok"><input id="g-ok" type="checkbox"> Autorizo o uso destes dados só para a lista de entrada do chá.</label>
+          <input class="hp" type="text" name="site" id="g-site" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-send" type="submit" id="g-send">Enviar para a lista</button>
+          <p class="form-msg" id="g-msg" role="alert"></p>
+        </form>
+        <div class="note-card guest-done" id="guest-done" hidden>
+          <p class="done-script">Recebemos!</p>
+          <p id="g-done-text">Seu nome está aguardando a confirmação da família. Até o dia 29!</p>
+          <button class="btn btn-ghost" type="button" id="g-again">Enviar outro nome</button>
+        </div>
       </div>
     </div>
   </section>
@@ -811,7 +916,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
           <textarea id="note-text" name="recado" rows="3" placeholder="Ex.: Bryan, estamos contando os dias para te conhecer!"></textarea>
         </div>
         <p class="note-picked"><span id="picked-text">Toque nas reações acima para colocá-las no recado.</span><button class="picked-clear" id="picked-clear" type="button" hidden>Tirar reações</button></p>
-        <a class="btn btn-send" id="wa-send" href="https://wa.me/?text=%F0%9F%92%99%20Recado%20para%20o%20Bryan%20%F0%9F%92%99%0A%0AMuito%20carinho%20para%20o%20Bryan%21%20J%C3%A1%20reservei%20o%20dia%2029%2F11%20para%20o%20ch%C3%A1." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>Enviar pelo WhatsApp</a>
+        <a class="btn btn-send" id="wa-send" href="https://wa.me/?text=%F0%9F%92%99%20Recado%20para%20o%20Bryan%20%F0%9F%92%99%0A%0AMuito%20carinho%20para%20o%20Bryan%21%20J%C3%A1%20reservei%20o%20dia%2029%2F11%2C%20%C3%A0s%2014h%2C%20para%20o%20ch%C3%A1." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>Enviar pelo WhatsApp</a>
         <p class="note-help">O WhatsApp abre com a mensagem pronta. É só escolher a conversa da família e enviar.</p>
       </form>
     </div>
@@ -857,7 +962,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
   document.querySelectorAll("img[data-bear]").forEach(function(img){img.src=hero.getAttribute("src");});
 
   /* ---------- Countdown to 29/11/2026 (horário de Brasília) ---------- */
-  var target=Date.parse("2026-11-29T00:00:00-03:00");
+  var target=Date.parse("2026-11-29T14:00:00-03:00");
   var dayEnd=Date.parse("2026-11-30T00:00:00-03:00");
   var num={d:$("cd-d"),h:$("cd-h"),m:$("cd-m"),s:$("cd-s")};
   var unit={d:$("u-d"),h:$("u-h"),m:$("u-m"),s:$("u-s")};
@@ -870,7 +975,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
     var now=Date.now(),left=target-now;
     if(left<=0){
       show("d",0,"0");show("h",0,"00");show("m",0,"00");show("s",0,"00");
-      if(now<dayEnd){put(title,"Hoje é o grande dia!");put(note,"Nos vemos no chá do Bryan.");}
+      if(now<dayEnd){put(title,"Começou o chá do Bryan!");put(note,"Estamos te esperando na Av. Dom Pedro I, 886.");}
       else{put(title,"O chá do Bryan aconteceu!");put(note,"Obrigado por todo o carinho com o nosso pequeno.");}
       if(timer){clearInterval(timer);timer=null;}
       return;
@@ -885,16 +990,65 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
   }
   tick();timer=setInterval(tick,1000);
 
-  /* ---------- Sealed envelopes ---------- */
-  document.querySelectorAll(".env").forEach(function(btn){
-    var t=null;
-    btn.addEventListener("click",function(){
-      var w=btn.closest(".secret").querySelector(".whisper");
-      btn.classList.remove("wiggle");void btn.offsetWidth;btn.classList.add("wiggle");
-      w.textContent=btn.getAttribute("data-msg");
-      clearTimeout(t);t=setTimeout(function(){w.textContent="";},3200);
+  /* ---------- Guest list form ---------- */
+  var gForm=$("guest-form");
+  if(gForm){
+    var gComps=$("g-comps"),gMsg=$("g-msg"),gSend=$("g-send"),gDone=$("guest-done");
+    var compSeq=0;
+    function renumber(){[].forEach.call(gComps.children,function(c,i){c.querySelector(".g-comp-head span").textContent="Acompanhante "+(i+1);});}
+    function compCard(){
+      compSeq++;
+      var box=document.createElement("div");box.className="g-comp";
+      var head=document.createElement("div");head.className="g-comp-head";
+      var title=document.createElement("span");
+      var del=document.createElement("button");del.type="button";del.className="g-comp-del";del.textContent="Tirar";
+      del.addEventListener("click",function(){box.remove();renumber();});
+      head.appendChild(title);head.appendChild(del);box.appendChild(head);
+      [["Nome completo","nome","off"],["Documento (se tiver)","documento","off"]].forEach(function(f,k){
+        var wrap=document.createElement("div");wrap.className="field";
+        var id="g-c-"+compSeq+"-"+k;
+        var lab=document.createElement("label");lab.htmlFor=id;lab.textContent=f[0];
+        var inp=document.createElement("input");inp.id=id;inp.type="text";inp.maxLength=k?24:80;inp.autocomplete=f[2];inp.setAttribute("data-k",f[1]);
+        if(k)inp.placeholder="Opcional para crianças";
+        wrap.appendChild(lab);wrap.appendChild(inp);box.appendChild(wrap);
+      });
+      gComps.appendChild(box);renumber();box.querySelector("input").focus();
+    }
+    $("g-add").addEventListener("click",function(){
+      if(gComps.children.length<8){compCard();gMsg.textContent="";}
+      else{gMsg.textContent="Para mais de 8 acompanhantes, fale direto com a família.";}
     });
-  });
+    function sending(on){gSend.disabled=on;gSend.textContent=on?"Enviando...":"Enviar para a lista";}
+    gForm.addEventListener("submit",function(e){
+      e.preventDefault();gMsg.textContent="";
+      var nome=$("g-nome").value.trim(),doc=$("g-doc").value.trim();
+      if(nome.split(/\s+/).length<2||nome.length<5){gMsg.textContent="Escreva seu nome completo, com sobrenome.";$("g-nome").focus();return;}
+      if(doc.replace(/[^0-9a-z]/gi,"").length<5){gMsg.textContent="Confira o número do documento (RG ou CPF).";$("g-doc").focus();return;}
+      if(!$("g-ok").checked){gMsg.textContent="Marque a autorização para usarmos seus dados na lista.";return;}
+      var acomp=[].map.call(gComps.children,function(c){
+        return {nome:c.querySelector('[data-k="nome"]').value,documento:c.querySelector('[data-k="documento"]').value};
+      }).filter(function(c){return c.nome.trim();});
+      sending(true);
+      fetch("/api/confirmar",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({nome:nome,documento:doc,telefone:$("g-tel").value,acompanhantes:acomp,consentimento:true,site:$("g-site").value})})
+        .then(function(r){return r.json().catch(function(){return {ok:false};});})
+        .then(function(d){
+          sending(false);
+          if(d&&d.ok){
+            $("g-done-text").textContent=d.repetido
+              ?"Já tínhamos um pedido com esse documento e ele já foi analisado pela família. Se precisar mudar algo, fale com ela."
+              :(d.atualizado?"Atualizamos o seu pedido. Agora é só aguardar a confirmação da família."
+                :"Seu nome está aguardando a confirmação da família. Até o dia 29!");
+            gForm.hidden=true;gDone.hidden=false;
+            try{gDone.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});}catch(err){}
+          }else{gMsg.textContent=(d&&d.erro)||"Não conseguimos enviar agora. Tente de novo em alguns minutos.";}
+        })
+        .catch(function(){sending(false);gMsg.textContent="Sem conexão. Confira a internet e tente de novo.";});
+    });
+    $("g-again").addEventListener("click",function(){
+      gForm.reset();gComps.textContent="";gDone.hidden=true;gForm.hidden=false;$("g-nome").focus();
+    });
+  }
 
 
   var reduce=false;

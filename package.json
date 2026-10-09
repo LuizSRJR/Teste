@@ -1,0 +1,11 @@
+{
+  "name": "cha-do-bryan",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo \"Site estatico em public/: nada para compilar\""
+  },
+  "dependencies": {
+    "@vercel/blob": ">=1.0.0"
+  }
+}
