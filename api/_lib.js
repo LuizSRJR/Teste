@@ -1,17 +1,15 @@
 // Lista de convidados do Chá do Bryan: funções compartilhadas pelas rotas /api.
-// Os dados ficam num único arquivo JSON dentro de um Blob PRIVADO da Vercel
-// (só a API, com o token do projeto, consegue ler). Um arquivo só = poucas operações
-// no plano gratuito, e cada gravação confere a versão (ETag) para ninguém apagar o pedido de outro.
+// Os cadastros vão para a planilha do Google da família (veja _planilha.js). Se a planilha
+// não responder, eles esperam numa fila: um único arquivo JSON num Blob PRIVADO da Vercel
+// (só a API, com o token do projeto, consegue ler). Cada gravação confere a versão (ETag)
+// para dois envios ao mesmo tempo não apagarem um ao outro.
 import crypto from 'node:crypto';
 import * as blob from '@vercel/blob';
 
-export const DOC_PATH = 'lista/convidados.json';
+export const DOC_PATH = 'lista/convidados.json'; // fila de cadastros esperando a planilha
 const LEGACY_PREFIX = 'convidados/'; // formato antigo (um arquivo por convidado)
 export const MAX_ITENS = 600;
 
-// Senha da família: só o hash fica no código (PBKDF2, 120 mil rodadas, com sal).
-const ADMIN_SALT = 'b8a3b17bec8a4e53302c876b0cf8a53f';
-const ADMIN_HASH = '5299edcab8a5a613ddf4df2b6402fe2d6f17aa99c47e673394563cfb1b222ee3';
 // Chave do autoteste técnico (GET /api/confirmar?diagnostico=...): também só o hash.
 const DIAG_HASH = 'a29a8419db065c6dcd21bdd152eea7d10ed5cf26edde0e44ef66b5e0df83a487';
 
@@ -26,12 +24,6 @@ export function json(res, status, data) {
 function sameHash(gotBuf, expectedHex) {
   const expected = Buffer.from(expectedHex, 'hex');
   return gotBuf.length === expected.length && crypto.timingSafeEqual(gotBuf, expected);
-}
-
-export function isAdmin(req) {
-  const key = req.headers['x-admin-key'];
-  if (typeof key !== 'string' || key.length < 6 || key.length > 120) return false;
-  return sameHash(crypto.pbkdf2Sync(key.trim(), ADMIN_SALT, 120000, 32, 'sha256'), ADMIN_HASH);
 }
 
 export function isDiag(value) {
@@ -110,16 +102,26 @@ async function legacyItems() {
   return { itens, urls };
 }
 
-// Lê a lista inteira: { itens, etag, legacyUrls }
+// Lê a fila inteira: { itens, etag }
 export async function readDoc() {
   const found = await readText(DOC_PATH);
-  if (!found) {
-    const legacy = await legacyItems();
-    return { itens: legacy.itens, etag: null, legacyUrls: legacy.urls };
-  }
+  if (!found) return { itens: [], etag: null };
   const data = JSON.parse(found.text); // se o arquivo estiver corrompido, melhor falhar do que sobrescrever
   const itens = Array.isArray(data && data.itens) ? data.itens.filter((i) => i && isId(i.id)) : [];
-  return { itens, etag: found.etag, legacyUrls: [] };
+  return { itens, etag: found.etag };
+}
+
+// Traz para a fila pedidos gravados no formato bem antigo (um arquivo por convidado), se existirem.
+// Só roda no autoteste, porque listar arquivos conta no limite do plano gratuito.
+export async function migrarLegado() {
+  const legacy = await legacyItems();
+  if (!legacy.urls.length) return 0;
+  await mutate((itens) => {
+    for (const item of legacy.itens) if (!itens.some((x) => x.id === item.id)) itens.push(item);
+    return {};
+  });
+  await blob.del(legacy.urls);
+  return legacy.itens.length;
 }
 
 function isConflict(err) {
@@ -136,7 +138,7 @@ function isRateLimited(err) {
 // fn pode devolver { semMudanca: true, ... } para não gravar nada.
 export async function mutate(fn) {
   for (let attempt = 0; ; attempt++) {
-    const { itens, etag, legacyUrls } = await readDoc();
+    const { itens, etag } = await readDoc();
     const out = fn(itens) || {};
     if (out.semMudanca) return out;
     const body = JSON.stringify({ versao: 1, atualizadoEm: new Date().toISOString(), itens });
@@ -155,16 +157,8 @@ export async function mutate(fn) {
       await sleep(wait + 80 + Math.random() * 220 * (attempt + 1));
       continue;
     }
-    if (legacyUrls.length) await blob.del(legacyUrls).catch(() => {});
     return out;
   }
-}
-
-// Apaga a lista inteira ("Depois do chá"). Apagar não conta no limite do plano gratuito.
-export async function removeAll() {
-  const { itens, legacyUrls } = await readDoc();
-  await blob.del([DOC_PATH, ...legacyUrls]);
-  return itens.length;
 }
 
 // Autoteste técnico: grava, lê, testa a trava de versão e apaga um arquivo de teste.

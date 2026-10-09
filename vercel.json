@@ -3,31 +3,17 @@
   "framework": null,
   "outputDirectory": "public",
   "cleanUrls": true,
-  "regions": [
-    "gru1"
+  "regions": ["gru1"],
+  "functions": {
+    "api/confirmar.js": { "maxDuration": 30 }
+  },
+  "redirects": [
+    { "source": "/lista", "destination": "/", "permanent": false }
   ],
   "headers": [
     {
-      "source": "/lista",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "no-store"
-        }
-      ]
-    },
-    {
       "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store"
-        }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
     }
   ]
 }

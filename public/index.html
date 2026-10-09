@@ -216,22 +216,6 @@ a{color:inherit}
   .secret p{max-width:17em;margin-inline:auto}
 }
 
-/* ---------- The name ---------- */
-.meaning{padding-block:clamp(68px,10vw,124px)}
-.meaning-grid{display:grid;gap:clamp(18px,4vw,64px);align-items:center}
-@media (min-width:880px){.meaning-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}}
-.meaning-name{text-align:center}
-.huge{font-family:var(--font-script);font-weight:400;font-size:clamp(5.2rem,3rem + 10vw,10.5rem);line-height:.95;color:var(--ink);margin:0;padding-inline:.1em}
-.origin{font-family:var(--font-caps);font-weight:600;font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:var(--label);margin:.9rem 0 0}
-.meaning-text{min-width:0}
-.meaning-text p{margin:0 0 1em;max-width:32em}
-.meaning-text .lede{font-size:1.18em;line-height:1.5}
-.virtues{list-style:none;padding:0;margin:.4rem 0 1.4rem;display:flex;flex-wrap:wrap;align-items:center;gap:6px 0}
-.virtues li{display:flex;align-items:center;font-family:var(--font-caps);font-weight:600;font-size:clamp(1rem,.9rem + .5vw,1.3rem);letter-spacing:.2em;text-transform:uppercase;color:var(--deep)}
-.virtues li+li::before{content:"";display:inline-block;width:12px;height:11px;margin:0 16px 0 10px;background:var(--honey);-webkit-mask:var(--heart-mask) center/contain no-repeat;mask:var(--heart-mask) center/contain no-repeat}
-.meaning-text .wish{font-style:italic;color:var(--ink)}
-.source{font-size:.92rem;color:var(--cornflower)}
-
 /* ---------- Closing ---------- */
 .closing{position:relative;overflow:hidden;text-align:center;background:linear-gradient(180deg,var(--sky-soft) 0%,var(--sky) 100%);padding:clamp(8px,2vw,24px) clamp(16px,4vw,40px) clamp(120px,12vw,150px)}
 .bunting{display:block;width:min(100%,920px);height:auto;margin:0 auto;overflow:visible}
@@ -278,7 +262,7 @@ a{color:inherit}
 .sub-eyebrow::before,.sub-eyebrow::after{content:"";flex:1;height:1px;background:var(--powder)}
 
 /* ---------- Send love: reactions + note ---------- */
-.love{--scallop-top:var(--paper);position:relative;overflow:hidden;background:var(--sky-soft);text-align:center;padding-block:clamp(84px,10vw,124px) clamp(36px,5vw,56px)}
+.love{--scallop-top:var(--linen);position:relative;overflow:hidden;background:var(--sky-soft);text-align:center;padding-block:clamp(84px,10vw,124px) clamp(36px,5vw,56px)}
 .love .section-lede{margin:0 auto}
 .reactions{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(6px,1.8vw,20px);max-width:640px;margin:clamp(24px,3vw,34px) auto 0}
 .react{position:relative;appearance:none;-webkit-appearance:none;width:clamp(60px,16.5vw,98px);padding:14px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:7px;border:1.5px solid var(--sky);border-radius:22px;background:var(--white);color:var(--deep);cursor:pointer;box-shadow:0 12px 22px -16px var(--shadow);transition:transform .2s,background-color .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
@@ -356,6 +340,66 @@ html.anim .secret.is-in .env-card{animation:cardUp 1s cubic-bezier(.2,.8,.2,1) c
 .guest-done{text-align:center;justify-items:center}
 .done-script{margin:0;font-family:var(--font-script);font-size:3.2rem;line-height:1;color:var(--ink)}
 .guest-done p{margin:0}
+
+/* ---------- Optional Pix: QR code on a gingham napkin ---------- */
+.pix{--scallop-top:var(--paper);position:relative;overflow:hidden;background:var(--linen);text-align:center;padding-block:clamp(84px,10vw,124px) clamp(70px,9vw,112px);scroll-margin-top:10px}
+.pix-head{max-width:640px;margin:0 auto clamp(34px,5vw,54px)}
+.pix-stage{position:relative;max-width:920px;margin:0 auto}
+.pix-stage::before{content:"";position:absolute;top:22px;right:-8px;bottom:-16px;left:-8px;border-radius:28px;background-color:var(--white);
+  background-image:linear-gradient(90deg,var(--gingham) 50%,transparent 50%),linear-gradient(var(--gingham) 50%,transparent 50%);background-size:22px 22px;
+  transform:rotate(-2deg);box-shadow:0 30px 60px -38px var(--shadow)}
+.pix-card{position:relative;text-align:left;background:var(--white);border:1px solid var(--sky);border-radius:24px;padding:clamp(26px,4.4vw,44px) clamp(18px,4vw,44px) clamp(22px,3.6vw,36px);box-shadow:0 30px 60px -34px var(--shadow)}
+.pix-grid{display:grid;gap:clamp(24px,4vw,48px);align-items:center}
+@media (min-width:780px){.pix-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}}
+.pix-qr{margin:0;display:grid;justify-items:center;gap:22px}
+.pix-frame{position:relative;width:min(100%,264px);padding:16px;border-radius:26px;background:var(--sky-soft);box-shadow:inset 0 0 0 1.5px var(--sky),0 18px 30px -24px var(--shadow)}
+.pix-svg{display:block;width:100%;height:auto;border-radius:12px}
+.pix-corner{position:absolute;width:30px;height:30px;border:3px solid var(--cornflower);pointer-events:none}
+.pix-corner.k1{top:6px;left:6px;border-right:0;border-bottom:0;border-top-left-radius:16px}
+.pix-corner.k2{top:6px;right:6px;border-left:0;border-bottom:0;border-top-right-radius:16px}
+.pix-corner.k3{bottom:6px;left:6px;border-right:0;border-top:0;border-bottom-left-radius:16px}
+.pix-corner.k4{bottom:6px;right:6px;border-left:0;border-top:0;border-bottom-right-radius:16px}
+.pix-shine{position:absolute;top:16px;right:16px;bottom:16px;left:16px;border-radius:12px;overflow:hidden;pointer-events:none}
+.pix-shine::after{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:45%;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.75) 50%,rgba(255,255,255,0) 100%);transform:translateX(-160%) skewX(-12deg);opacity:0}
+.pix-seal{position:absolute;left:50%;bottom:-17px;width:38px;height:38px;margin-left:-19px;display:grid;place-items:center;border-radius:50%;background:var(--cornflower);box-shadow:0 0 0 3px var(--white),0 6px 12px -4px rgba(31,61,102,.45)}
+.pix-seal svg{width:17px;height:16px;fill:var(--white)}
+.pix-qr figcaption{font-style:italic;font-size:1.02rem;line-height:1.4;color:var(--label);text-align:center}
+.pix-info{min-width:0}
+.pix-label{display:flex;align-items:center;gap:8px;margin:0;font-family:var(--font-caps);font-weight:600;font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--label)}
+.pix-label svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pix-key{margin:.3rem 0 .2rem;font-family:var(--font-caps);font-weight:700;font-size:clamp(1.55rem,1.15rem + 1.7vw,2.25rem);letter-spacing:.04em;line-height:1.2;color:var(--deep);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
+.pix-free{margin:0 0 1.2rem;font-size:1.08rem;line-height:1.45;color:var(--ink)}
+.pix-actions{display:flex;flex-wrap:wrap;gap:10px}
+.pix-actions .btn{position:relative}
+.pix-actions .btn.done{background:var(--deep);border-color:var(--deep);color:var(--paper)}
+.pix-actions .btn-ghost.done{background:var(--sky);color:var(--deep);border-color:var(--ink)}
+.pix-raw{margin-top:.2rem}
+.pix-raw summary{cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-style:italic;font-size:1.02rem;color:var(--label);text-decoration:underline;text-underline-offset:3px;list-style:none}
+.pix-raw summary::-webkit-details-marker{display:none}
+.pix-raw code{display:block;margin-top:10px;padding:12px 14px;border-radius:12px;background:var(--paper);border:1px dashed var(--powder);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:.8rem;font-weight:500;line-height:1.55;color:var(--deep);word-break:break-all;-webkit-user-select:all;user-select:all}
+.pix-steps{list-style:none;counter-reset:pixpasso;padding:clamp(20px,3vw,28px) 0 0;margin:clamp(24px,3.6vw,36px) 0 0;border-top:1.5px dashed var(--sky);display:grid;gap:14px}
+.pix-steps li{counter-increment:pixpasso;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;line-height:1.4}
+.pix-steps li::before{content:counter(pixpasso);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--sky-soft);border:1px solid var(--sky);font-family:var(--font-caps);font-weight:700;color:var(--ink)}
+.pix-steps strong{color:var(--ink)}
+@media (min-width:780px){.pix-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.pix-steps li{align-items:start}}
+.pix-note{display:flex;align-items:center;justify-content:center;gap:10px;max-width:30em;margin:clamp(30px,4vw,44px) auto 0;font-family:var(--font-script);font-size:clamp(1.75rem,1.4rem + 1.3vw,2.3rem);line-height:1.2;color:var(--ink);text-wrap:balance}
+.pix-note svg{width:24px;height:22px;flex:none;fill:var(--honey)}
+.pix-float{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;overflow:hidden}
+.pf{position:absolute;width:26px;height:24px;fill:var(--powder);opacity:.55}
+.pf1{left:6%;top:24%;animation:pixFloat 9s ease-in-out infinite}
+.pf2{right:7%;top:18%;width:34px;height:31px;fill:var(--sky);opacity:.9;animation:pixFloat 11s ease-in-out -3s infinite}
+.pf3{left:10%;bottom:16%;width:20px;height:18px;fill:var(--honey);opacity:.45;animation:pixFloat 10s ease-in-out -6s infinite}
+.pf4{right:12%;bottom:12%;width:22px;height:20px;animation:pixFloat 12s ease-in-out -2s infinite}
+@media (max-width:640px){.pf1{left:-4px;top:8%}.pf2{right:-6px;top:6%}.pf3,.pf4{display:none}}
+.pix-burst{position:absolute;left:50%;top:0;width:18px;height:17px;fill:var(--cornflower);pointer-events:none;animation:heartUp 1.4s ease-out forwards}
+.mimo-pix{margin-top:.2rem!important}
+html.anim .pix-card.is-in .pix-shine::after{animation:shine 1.5s ease-in-out .9s 1 both}
+html.anim .pix-card:not(.is-in) .pix-seal{opacity:0}
+html.anim .pix-card.is-in .pix-seal{animation:popIn .55s cubic-bezier(.3,1.6,.5,1) .7s both}
+html.anim .pix-card:not(.is-in) .pix-corner{opacity:0}
+html.anim .pix-card.is-in .pix-corner{animation:cornerIn .6s cubic-bezier(.3,1.4,.5,1) .45s both}
+html.anim [data-ambient]:not(.is-live) .pf{animation-play-state:paused}
+html.lite .pf{animation:none}
 
 /* ---------- Music box ---------- */
 .music{position:fixed;z-index:30;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border:0;border-radius:999px;background:var(--deep);color:var(--paper);font-family:var(--font-caps);font-weight:600;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 26px -10px rgba(31,61,102,.55);transition:transform .2s,background-color .2s}
@@ -496,6 +540,9 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
 @keyframes ripple{0%{opacity:.7;transform:scale(.4)}100%{opacity:0;transform:scale(3)}}
 @keyframes nudge{0%,100%{transform:rotate(0)}30%{transform:rotate(-2.5deg)}60%{transform:rotate(2deg)}}
 @keyframes draw{to{stroke-dashoffset:0}}
+@keyframes shine{0%{opacity:0;transform:translateX(-160%) skewX(-12deg)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(330%) skewX(-12deg)}}
+@keyframes cornerIn{from{opacity:0;transform:scale(1.35)}to{opacity:1;transform:none}}
+@keyframes pixFloat{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-14px) rotate(6deg)}}
 @keyframes cardUp{from{transform:translateY(46px)}to{transform:translateY(0)}}
 @keyframes tickPop{0%,100%{transform:translateX(-50%) scale(1)}40%{transform:translateX(-50%) scale(1.12)}}
 @keyframes noteUp{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(12px,-46px) rotate(18deg)}}
@@ -746,8 +793,8 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <div class="balloons" role="timer" aria-live="off" data-reveal="group">
         <div class="bl bl-d"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-d">51</span><span class="unit" id="u-d">dias</span></div>
         <div class="bl bl-h"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-h">08</span><span class="unit" id="u-h">horas</span></div>
-        <div class="bl bl-m"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-m">57</span><span class="unit" id="u-m">minutos</span></div>
-        <div class="bl bl-s"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-s">07</span><span class="unit" id="u-s">segundos</span></div>
+        <div class="bl bl-m"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-m">21</span><span class="unit" id="u-m">minutos</span></div>
+        <div class="bl bl-s"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-s">27</span><span class="unit" id="u-s">segundos</span></div>
       </div>
       <p class="cd-note" id="cd-note" data-reveal style="--d:.5s">até domingo, 29 de novembro, às 14h, no Guarujá</p>
     </div>
@@ -842,6 +889,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
               <li>Toalhinhas e fraldas de pano</li>
             </ul>
             <p class="mimo-note">Escolha o que preferir. O mais importante é a sua presença!</p>
+            <a class="t-link mimo-pix" href="#pix">Prefere mandar um Pix?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
           </div>
         </li>
       </ul>
@@ -891,6 +939,58 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
           <button class="btn btn-ghost" type="button" id="g-again">Enviar outro nome</button>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="pix scallop-top" id="pix" aria-labelledby="pix-title" data-ambient>
+    <div class="pix-float" aria-hidden="true">
+      <svg class="pf pf1" viewBox="0 0 24 22"><use href="#heart"/></svg>
+      <svg class="pf pf2" viewBox="0 0 24 22"><use href="#heart"/></svg>
+      <svg class="pf pf3" viewBox="0 0 24 22"><use href="#heart"/></svg>
+      <svg class="pf pf4" viewBox="0 0 24 22"><use href="#heart"/></svg>
+    </div>
+    <div class="wrap">
+      <div class="pix-head">
+        <p class="eyebrow">Pix opcional</p>
+        <h2 id="pix-title" class="script-h" data-reveal="write">Um mimo em Pix</h2>
+        <p class="section-lede">Se for mais prático para você, o mimo também pode ser um Pix, de qualquer valor. É totalmente opcional: o que importa mesmo é ter você com a gente.</p>
+      </div>
+      <div class="pix-stage">
+        <article class="pix-card" aria-label="Dados do Pix" data-reveal>
+          <span class="tape tape-l" aria-hidden="true"></span>
+          <span class="tape tape-r" aria-hidden="true"></span>
+          <div class="pix-grid">
+            <figure class="pix-qr">
+              <div class="pix-frame">
+                <svg class="pix-svg" viewBox="0 0 53 53" role="img" aria-label="QR code do Pix do Chá do Bryan"><rect width="53" height="53" rx="2.6" fill="#ffffff"/><path d="M13 4h2v1h-2zM17 4h1v1h-1zM20 4h2v1h-2zM29 4h1v1h-1zM33 4h2v1h-2zM37 4h1v1h-1zM40 4h1v1h-1zM15 5h4v1h-4zM22 5h2v1h-2zM28 5h1v1h-1zM31 5h2v1h-2zM35 5h1v1h-1zM37 5h1v1h-1zM39 5h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM17 6h1v1h-1zM19 6h4v1h-4zM24 6h2v1h-2zM32 6h6v1h-6zM39 6h1v1h-1zM12 7h3v1h-3zM16 7h1v1h-1zM18 7h7v1h-7zM26 7h1v1h-1zM28 7h2v1h-2zM31 7h1v1h-1zM33 7h1v1h-1zM37 7h1v1h-1zM39 7h2v1h-2zM12 8h1v1h-1zM18 8h1v1h-1zM21 8h2v1h-2zM24 8h5v1h-5zM31 8h1v1h-1zM34 8h1v1h-1zM36 8h1v1h-1zM38 8h3v1h-3zM12 9h1v1h-1zM15 9h2v1h-2zM19 9h2v1h-2zM22 9h1v1h-1zM24 9h1v1h-1zM28 9h3v1h-3zM33 9h1v1h-1zM35 9h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM32 10h1v1h-1zM34 10h1v1h-1zM36 10h1v1h-1zM38 10h1v1h-1zM40 10h1v1h-1zM12 11h3v1h-3zM18 11h1v1h-1zM20 11h3v1h-3zM24 11h1v1h-1zM28 11h2v1h-2zM32 11h3v1h-3zM37 11h1v1h-1zM40 11h1v1h-1zM4 12h1v1h-1zM6 12h5v1h-5zM17 12h1v1h-1zM22 12h1v1h-1zM24 12h5v1h-5zM30 12h1v1h-1zM34 12h2v1h-2zM38 12h2v1h-2zM42 12h5v1h-5zM7 13h3v1h-3zM11 13h6v1h-6zM18 13h5v1h-5zM24 13h2v1h-2zM28 13h1v1h-1zM32 13h3v1h-3zM37 13h1v1h-1zM40 13h1v1h-1zM43 13h1v1h-1zM45 13h4v1h-4zM4 14h2v1h-2zM10 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM16 14h1v1h-1zM18 14h3v1h-3zM22 14h1v1h-1zM25 14h1v1h-1zM27 14h1v1h-1zM30 14h1v1h-1zM32 14h1v1h-1zM34 14h1v1h-1zM38 14h6v1h-6zM46 14h1v1h-1zM6 15h3v1h-3zM13 15h3v1h-3zM22 15h4v1h-4zM32 15h1v1h-1zM34 15h4v1h-4zM40 15h1v1h-1zM42 15h1v1h-1zM44 15h1v1h-1zM46 15h1v1h-1zM4 16h2v1h-2zM8 16h1v1h-1zM10 16h2v1h-2zM14 16h1v1h-1zM16 16h3v1h-3zM22 16h1v1h-1zM24 16h1v1h-1zM26 16h2v1h-2zM31 16h1v1h-1zM33 16h1v1h-1zM37 16h3v1h-3zM43 16h1v1h-1zM4 17h1v1h-1zM6 17h1v1h-1zM8 17h1v1h-1zM11 17h4v1h-4zM17 17h2v1h-2zM20 17h2v1h-2zM23 17h3v1h-3zM27 17h1v1h-1zM31 17h2v1h-2zM34 17h2v1h-2zM37 17h1v1h-1zM40 17h1v1h-1zM43 17h1v1h-1zM4 18h1v1h-1zM6 18h2v1h-2zM9 18h2v1h-2zM13 18h1v1h-1zM15 18h3v1h-3zM28 18h3v1h-3zM33 18h1v1h-1zM35 18h1v1h-1zM38 18h6v1h-6zM46 18h2v1h-2zM6 19h1v1h-1zM8 19h1v1h-1zM15 19h2v1h-2zM18 19h2v1h-2zM22 19h2v1h-2zM25 19h1v1h-1zM28 19h1v1h-1zM34 19h4v1h-4zM46 19h1v1h-1zM48 19h1v1h-1zM5 20h1v1h-1zM8 20h1v1h-1zM10 20h3v1h-3zM14 20h5v1h-5zM22 20h2v1h-2zM28 20h2v1h-2zM37 20h3v1h-3zM42 20h1v1h-1zM45 20h1v1h-1zM48 20h1v1h-1zM5 21h5v1h-5zM12 21h3v1h-3zM16 21h2v1h-2zM19 21h3v1h-3zM23 21h1v1h-1zM26 21h2v1h-2zM29 21h1v1h-1zM31 21h5v1h-5zM40 21h1v1h-1zM43 21h2v1h-2zM46 21h3v1h-3zM4 22h1v1h-1zM6 22h1v1h-1zM8 22h3v1h-3zM13 22h3v1h-3zM17 22h1v1h-1zM20 22h1v1h-1zM22 22h5v1h-5zM28 22h1v1h-1zM31 22h1v1h-1zM33 22h1v1h-1zM37 22h1v1h-1zM41 22h3v1h-3zM45 22h2v1h-2zM6 23h2v1h-2zM9 23h1v1h-1zM13 23h2v1h-2zM16 23h1v1h-1zM18 23h3v1h-3zM28 23h1v1h-1zM32 23h6v1h-6zM39 23h3v1h-3zM44 23h1v1h-1zM46 23h2v1h-2zM6 24h1v1h-1zM8 24h7v1h-7zM16 24h1v1h-1zM18 24h2v1h-2zM21 24h9v1h-9zM31 24h1v1h-1zM33 24h1v1h-1zM38 24h8v1h-8zM47 24h1v1h-1zM4 25h1v1h-1zM6 25h1v1h-1zM8 25h1v1h-1zM12 25h6v1h-6zM19 25h1v1h-1zM21 25h4v1h-4zM28 25h1v1h-1zM31 25h1v1h-1zM34 25h1v1h-1zM36 25h2v1h-2zM39 25h2v1h-2zM44 25h1v1h-1zM46 25h3v1h-3zM4 26h5v1h-5zM10 26h1v1h-1zM12 26h3v1h-3zM16 26h3v1h-3zM21 26h1v1h-1zM24 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM31 26h1v1h-1zM33 26h1v1h-1zM36 26h3v1h-3zM40 26h1v1h-1zM42 26h1v1h-1zM44 26h1v1h-1zM46 26h1v1h-1zM4 27h1v1h-1zM8 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM16 27h2v1h-2zM20 27h1v1h-1zM24 27h1v1h-1zM28 27h6v1h-6zM36 27h1v1h-1zM40 27h1v1h-1zM44 27h1v1h-1zM46 27h2v1h-2zM5 28h1v1h-1zM7 28h8v1h-8zM17 28h5v1h-5zM23 28h6v1h-6zM30 28h1v1h-1zM33 28h1v1h-1zM37 28h9v1h-9zM6 29h1v1h-1zM9 29h1v1h-1zM11 29h3v1h-3zM17 29h1v1h-1zM19 29h1v1h-1zM22 29h3v1h-3zM26 29h1v1h-1zM28 29h2v1h-2zM32 29h1v1h-1zM34 29h2v1h-2zM37 29h1v1h-1zM41 29h3v1h-3zM47 29h2v1h-2zM4 30h1v1h-1zM6 30h7v1h-7zM14 30h1v1h-1zM17 30h3v1h-3zM21 30h1v1h-1zM24 30h2v1h-2zM30 30h1v1h-1zM38 30h1v1h-1zM45 30h1v1h-1zM8 31h2v1h-2zM11 31h1v1h-1zM14 31h1v1h-1zM16 31h1v1h-1zM18 31h1v1h-1zM26 31h3v1h-3zM32 31h1v1h-1zM34 31h3v1h-3zM39 31h4v1h-4zM46 31h2v1h-2zM5 32h2v1h-2zM10 32h1v1h-1zM12 32h3v1h-3zM16 32h3v1h-3zM22 32h4v1h-4zM27 32h1v1h-1zM31 32h1v1h-1zM34 32h1v1h-1zM44 32h2v1h-2zM4 33h4v1h-4zM9 33h1v1h-1zM12 33h4v1h-4zM17 33h1v1h-1zM20 33h3v1h-3zM26 33h1v1h-1zM28 33h1v1h-1zM34 33h1v1h-1zM36 33h2v1h-2zM40 33h2v1h-2zM43 33h1v1h-1zM46 33h1v1h-1zM4 34h2v1h-2zM7 34h1v1h-1zM10 34h1v1h-1zM13 34h3v1h-3zM18 34h2v1h-2zM21 34h1v1h-1zM24 34h1v1h-1zM27 34h4v1h-4zM33 34h1v1h-1zM38 34h2v1h-2zM43 34h2v1h-2zM46 34h2v1h-2zM4 35h1v1h-1zM9 35h1v1h-1zM12 35h2v1h-2zM19 35h1v1h-1zM22 35h1v1h-1zM26 35h1v1h-1zM28 35h3v1h-3zM34 35h4v1h-4zM39 35h5v1h-5zM46 35h2v1h-2zM5 36h1v1h-1zM8 36h1v1h-1zM10 36h2v1h-2zM15 36h1v1h-1zM17 36h2v1h-2zM20 36h3v1h-3zM24 36h1v1h-1zM27 36h2v1h-2zM30 36h1v1h-1zM38 36h1v1h-1zM41 36h1v1h-1zM44 36h2v1h-2zM47 36h1v1h-1zM4 37h2v1h-2zM9 37h1v1h-1zM12 37h1v1h-1zM14 37h1v1h-1zM18 37h1v1h-1zM22 37h1v1h-1zM24 37h2v1h-2zM28 37h1v1h-1zM31 37h2v1h-2zM34 37h1v1h-1zM40 37h2v1h-2zM43 37h1v1h-1zM45 37h4v1h-4zM8 38h1v1h-1zM10 38h1v1h-1zM18 38h1v1h-1zM24 38h1v1h-1zM26 38h2v1h-2zM29 38h3v1h-3zM37 38h1v1h-1zM39 38h1v1h-1zM43 38h2v1h-2zM5 39h4v1h-4zM11 39h2v1h-2zM19 39h1v1h-1zM21 39h1v1h-1zM23 39h4v1h-4zM28 39h3v1h-3zM32 39h3v1h-3zM36 39h8v1h-8zM46 39h1v1h-1zM48 39h1v1h-1zM4 40h1v1h-1zM7 40h2v1h-2zM10 40h1v1h-1zM12 40h2v1h-2zM15 40h1v1h-1zM17 40h1v1h-1zM22 40h1v1h-1zM24 40h5v1h-5zM30 40h2v1h-2zM33 40h2v1h-2zM37 40h2v1h-2zM40 40h6v1h-6zM47 40h1v1h-1zM12 41h1v1h-1zM14 41h1v1h-1zM16 41h2v1h-2zM19 41h1v1h-1zM22 41h3v1h-3zM28 41h5v1h-5zM34 41h1v1h-1zM36 41h2v1h-2zM40 41h1v1h-1zM44 41h1v1h-1zM46 41h3v1h-3zM14 42h2v1h-2zM17 42h1v1h-1zM21 42h1v1h-1zM23 42h2v1h-2zM26 42h1v1h-1zM28 42h1v1h-1zM31 42h1v1h-1zM33 42h1v1h-1zM36 42h5v1h-5zM42 42h1v1h-1zM44 42h1v1h-1zM46 42h1v1h-1zM12 43h3v1h-3zM19 43h1v1h-1zM21 43h1v1h-1zM24 43h1v1h-1zM28 43h1v1h-1zM31 43h2v1h-2zM34 43h1v1h-1zM37 43h1v1h-1zM40 43h1v1h-1zM44 43h1v1h-1zM46 43h2v1h-2zM12 44h3v1h-3zM16 44h1v1h-1zM19 44h1v1h-1zM21 44h1v1h-1zM24 44h5v1h-5zM30 44h1v1h-1zM34 44h2v1h-2zM37 44h1v1h-1zM40 44h6v1h-6zM12 45h2v1h-2zM17 45h1v1h-1zM20 45h1v1h-1zM22 45h1v1h-1zM26 45h1v1h-1zM29 45h1v1h-1zM31 45h4v1h-4zM37 45h1v1h-1zM39 45h1v1h-1zM41 45h1v1h-1zM43 45h1v1h-1zM45 45h4v1h-4zM12 46h1v1h-1zM16 46h1v1h-1zM18 46h1v1h-1zM20 46h1v1h-1zM25 46h1v1h-1zM27 46h2v1h-2zM30 46h1v1h-1zM32 46h1v1h-1zM34 46h1v1h-1zM36 46h1v1h-1zM38 46h1v1h-1zM40 46h2v1h-2zM45 46h3v1h-3zM13 47h1v1h-1zM19 47h2v1h-2zM22 47h1v1h-1zM24 47h2v1h-2zM27 47h1v1h-1zM31 47h1v1h-1zM33 47h5v1h-5zM40 47h1v1h-1zM43 47h2v1h-2zM46 47h1v1h-1zM12 48h2v1h-2zM16 48h1v1h-1zM18 48h1v1h-1zM20 48h1v1h-1zM22 48h2v1h-2zM25 48h1v1h-1zM28 48h1v1h-1zM34 48h1v1h-1zM37 48h1v1h-1zM40 48h4v1h-4zM45 48h1v1h-1zM47 48h1v1h-1z" style="fill:var(--deep)" shape-rendering="crispEdges"/><rect x="4" y="4" width="7" height="7" style="fill:var(--deep)"/><rect x="5" y="5" width="5" height="5" fill="#ffffff"/><rect x="6" y="6" width="3" height="3" style="fill:var(--ink)"/><rect x="42" y="4" width="7" height="7" style="fill:var(--deep)"/><rect x="43" y="5" width="5" height="5" fill="#ffffff"/><rect x="44" y="6" width="3" height="3" style="fill:var(--ink)"/><rect x="4" y="42" width="7" height="7" style="fill:var(--deep)"/><rect x="5" y="43" width="5" height="5" fill="#ffffff"/><rect x="6" y="44" width="3" height="3" style="fill:var(--ink)"/></svg>
+                <span class="pix-shine" aria-hidden="true"></span>
+                <i class="pix-corner k1" aria-hidden="true"></i><i class="pix-corner k2" aria-hidden="true"></i><i class="pix-corner k3" aria-hidden="true"></i><i class="pix-corner k4" aria-hidden="true"></i>
+                <span class="pix-seal" aria-hidden="true"><svg viewBox="0 0 24 22"><use href="#heart"/></svg></span>
+              </div>
+              <figcaption>Está no computador? Leia com a câmera do app do banco.</figcaption>
+            </figure>
+            <div class="pix-info">
+              <p class="pix-label"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.4"/><path d="M10.5 18.5h3"/></svg>Chave Pix · celular</p>
+              <p class="pix-key" id="pix-key">(85) 99250-2577</p>
+              <p class="pix-free">Você escolhe o valor na hora, no app do seu banco.</p>
+              <div class="pix-actions">
+                <button class="btn" type="button" id="pix-copy-code" data-copy="00020126360014br.gov.bcb.pix0114+55859925025775204000053039865802BR5912CHA DO BRYAN6007GUARUJA62070503***6304E611"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="12" rx="2"/><path d="M15.5 5.5V5a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 5v9A1.5 1.5 0 0 0 6 15.5h.5"/></svg><span>Copiar código Pix</span></button>
+                <button class="btn btn-ghost" type="button" id="pix-copy-key" data-copy="85992502577"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="12" rx="2"/><path d="M15.5 5.5V5a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 5v9A1.5 1.5 0 0 0 6 15.5h.5"/></svg><span>Copiar só a chave</span></button>
+              </div>
+              <p class="copy-feedback" id="pix-feedback" aria-live="polite"></p>
+              <details class="pix-raw" id="pix-raw">
+                <summary>Ver o código “copia e cola”</summary>
+                <code id="pix-code">00020126360014br.gov.bcb.pix0114+55859925025775204000053039865802BR5912CHA DO BRYAN6007GUARUJA62070503***6304E611</code>
+              </details>
+            </div>
+          </div>
+          <ol class="pix-steps">
+            <li><span><strong>Abra o app do seu banco</strong> e entre na área do Pix.</span></li>
+            <li><span><strong>Escolha “Pix copia e cola”</strong> e cole o código, ou leia o QR code.</span></li>
+            <li><span><strong>Digite o valor que quiser</strong> e confirme. Pronto!</span></li>
+          </ol>
+        </article>
+      </div>
+      <p class="pix-note" data-reveal><svg viewBox="0 0 24 22" aria-hidden="true"><use href="#heart"/></svg>Sem obrigação nenhuma, viu? Sua presença já é o nosso maior presente.</p>
     </div>
   </section>
   <section class="love scallop-top" aria-labelledby="love-title">
@@ -1079,6 +1179,46 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
     }catch(e){fallback();}
   });
 
+  /* ---------- Pix: copy the code or the key ---------- */
+  var pixOut=$("pix-feedback"),pixT=null;
+  function pixSay(msg){pixOut.textContent=msg;clearTimeout(pixT);pixT=setTimeout(function(){pixOut.textContent="";},7000);}
+  function pixHearts(btn){
+    if(reduce||root.classList.contains("lite"))return;
+    for(var i=0;i<5;i++){
+      var h=document.createElementNS(svgNS,"svg"),u=document.createElementNS(svgNS,"use");
+      h.setAttribute("viewBox","0 0 24 22");h.setAttribute("class","pix-burst");h.setAttribute("aria-hidden","true");
+      u.setAttribute("href","#heart");h.appendChild(u);
+      h.style.setProperty("--dx",Math.round(Math.random()*120-60)+"px");
+      h.style.setProperty("--rot",Math.round(Math.random()*50-25)+"deg");
+      h.style.animationDelay=(i*0.07)+"s";
+      if(i%2)h.style.fill="var(--powder)";
+      btn.appendChild(h);
+      setTimeout(function(n){return function(){n.remove();};}(h),1700);
+    }
+  }
+  function pixCopy(btn,okMsg,selectEl,selMsg){
+    var label=btn.querySelector("span"),orig=label.textContent,text=btn.getAttribute("data-copy");
+    var ok=function(){
+      pixSay(okMsg);label.textContent="Copiado!";btn.classList.add("done");pixHearts(btn);
+      setTimeout(function(){label.textContent=orig;btn.classList.remove("done");},2600);
+    };
+    var fallback=function(){
+      if(selectEl===$("pix-code"))$("pix-raw").open=true;
+      try{var r=document.createRange();r.selectNodeContents(selectEl);var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);}catch(e){}
+      pixSay(selMsg);
+    };
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,fallback);}
+      else{fallback();}
+    }catch(e){fallback();}
+  }
+  $("pix-copy-code").addEventListener("click",function(){
+    pixCopy(this,"Código copiado! Agora abra o app do banco, escolha “Pix copia e cola” e cole.",$("pix-code"),"Código selecionado. É só copiar e colar no app do banco.");
+  });
+  $("pix-copy-key").addEventListener("click",function(){
+    pixCopy(this,"Chave copiada! No app do banco, escolha Pix com chave de celular.",$("pix-key"),"Chave selecionada. É só copiar.");
+  });
+
   /* ---------- Pet the bear: little hearts ---------- */
   var bearBtn=$("bear-btn"),svgNS="http://www.w3.org/2000/svg";
   bearBtn.addEventListener("click",function(){
@@ -1101,7 +1241,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
   /* ---------- Send love: reactions + WhatsApp note ---------- */
   var picked=[],sayEl=$("react-say"),pickedText=$("picked-text"),pickedClear=$("picked-clear");
   var nameEl=$("note-name"),textEl=$("note-text"),wa=$("wa-send");
-  var fallbackNote="Muito carinho para o Bryan! Já reservei o dia 29/11 para o chá.";
+  var fallbackNote="Muito carinho para o Bryan! Já reservei o dia 29/11, às 14h, para o chá.";
   function buildNote(){
     var em=picked.length?picked.join(""):"💙";
     var body=(textEl.value||"").trim()||fallbackNote;
