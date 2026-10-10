@@ -165,7 +165,7 @@ a{color:inherit}
   --scallop-top:var(--paper);--scallop:var(--linen);
   position:relative;overflow:hidden;text-align:center;
   background:linear-gradient(180deg,var(--sky-soft) 0%,var(--sky) 100%);
-  padding-block:clamp(84px,11vw,136px) clamp(76px,10vw,124px);
+  padding-block:clamp(118px,13vw,156px) clamp(76px,10vw,124px);
 }
 .cloud{position:absolute;width:150px;height:48px;border-radius:48px;background:var(--white);opacity:.78;z-index:0;animation:drift 24s ease-in-out infinite alternate}
 .cloud::before,.cloud::after{content:"";position:absolute;border-radius:50%;background:var(--white)}
@@ -409,6 +409,111 @@ html.anim .pix-card.is-in .pix-corner{animation:cornerIn .6s cubic-bezier(.3,1.4
 html.anim [data-ambient]:not(.is-live) .pf{animation-play-state:paused}
 html.lite .pf{animation:none}
 
+/* ---------- More life (v7): decorations that move. Transform/opacity only, paused off-screen ---------- */
+.hero-deco,.sky-deco,.love-deco,.closing-deco{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;overflow:hidden}
+.hero .oval{z-index:1}
+.hb{position:absolute;height:auto;overflow:visible;filter:drop-shadow(0 12px 12px rgba(31,61,102,.16))}
+.hb1{left:6%;top:15%;width:92px;color:var(--ink)}
+.hb2{left:13%;top:55%;width:62px;color:var(--powder)}
+.hb3{right:7%;top:11%;width:84px;color:var(--cornflower)}
+.hb4{right:14%;top:57%;width:58px;color:var(--sand)}
+@media (max-width:760px){.hb1{left:-24px;top:4%;width:60px}.hb3{right:-22px;top:44%;width:56px}.hb2,.hb4{display:none}}
+.spk{position:absolute;width:16px;height:16px;fill:var(--white);filter:drop-shadow(0 1px 2px rgba(31,61,102,.35))}
+.hero-deco .s1{left:23%;top:8%}
+.hero-deco .s2{right:24%;top:19%;width:12px;height:12px;fill:var(--honey);filter:none}
+.hero-deco .s3{left:17%;bottom:22%;width:12px;height:12px}
+.hero-deco .s4{right:19%;bottom:12%;width:19px;height:19px;fill:var(--honey);filter:none}
+.hero-deco .s5{left:31%;top:2.5%;width:10px;height:10px;fill:var(--cornflower);filter:none}
+.hero-deco .s6{right:31%;bottom:5%;width:11px;height:11px}
+@media (max-width:760px){.hero-deco .s1{left:5%;top:2.5%}.hero-deco .s2{right:7%;top:12%}.hero-deco .s3{left:4%;bottom:9%}.hero-deco .s4{right:5%;bottom:3%}.hero-deco .s5,.hero-deco .s6{display:none}}
+.sky-deco{z-index:1}
+.sky-deco .spk{filter:none}
+.sky-deco .k1{left:8%;top:13%}.sky-deco .k2{left:29%;top:5%;width:11px;height:11px}.sky-deco .k3{right:27%;top:9%;width:13px;height:13px}
+.sky-deco .k4{right:7%;top:31%}.sky-deco .k5{left:44%;bottom:7%;width:12px;height:12px}
+.stork-track{position:absolute;left:0;top:clamp(20px,2vw,28px);width:clamp(100px,12vw,156px)}
+.stork{display:block;width:100%;height:auto;overflow:visible}
+.wing-near{transform-box:view-box;transform-origin:98px 62px}
+.wing-far{transform-box:view-box;transform-origin:104px 58px}
+.flourish{display:block;width:150px;height:auto;margin:-.6rem 0 1.15rem;overflow:visible}
+.flourish path{fill:none;stroke:var(--powder);stroke-width:1.8;stroke-linecap:round}
+.flourish use{fill:var(--honey)}
+.countdown .flourish,.secrets-head .flourish,.pix-head .flourish,.love .flourish{margin-inline:auto}
+.place-art{position:relative}
+.duck{position:absolute;left:19%;bottom:3.5%;width:6.4%;height:auto;overflow:visible}
+.clock-ico .hand-h,.clock-ico .hand-m{transform-box:view-box;transform-origin:12px 12px}
+.clock-ico .hand-h{transform:rotate(60deg)}
+.gift{transform-box:fill-box;transform-origin:50% 100%}
+.trail{display:block;width:min(480px,94%);height:auto;margin:-34px auto 24px;fill:var(--powder);opacity:.9}
+.fp{transform-box:fill-box;transform-origin:50% 50%}
+.love .wrap{position:relative;z-index:1}
+.toy{position:absolute;width:52px;height:52px;fill:none;stroke:var(--powder);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.toy .dot{fill:var(--powder);stroke:none}
+.t1{left:5%;top:15%}.t2{right:6%;top:11%;width:46px;height:46px}.t3{left:7%;bottom:24%;width:44px;height:44px}.t4{right:7%;bottom:30%;width:50px;height:50px}.t5{left:47%;top:3%;width:38px;height:38px}
+@media (max-width:760px){.toy{width:36px;height:36px}.t1{left:2%;top:6%}.t2{right:3%;top:4%;width:34px;height:34px}.t3{left:1%;bottom:10%;width:32px;height:32px}.t4{right:2%;bottom:14%;width:34px;height:34px}.t5{display:none}}
+@media (min-width:900px){.hero-deco .spk{transform-origin:50% 50%;scale:1.45}.toy{scale:1.25}.sky-deco .spk{scale:1.3}}
+.closing-deco .spk{filter:none;fill:var(--white)}
+.closing-deco .f1{left:12%;top:40%}.closing-deco .f2{right:13%;top:36%;width:12px;height:12px;fill:var(--honey)}
+.closing-deco .f3{left:28%;bottom:16%;width:11px;height:11px;fill:var(--honey)}.closing-deco .f4{right:27%;bottom:20%;width:14px;height:14px}
+.ih{position:absolute;left:50%;top:50%;z-index:6;width:24px;height:22px;opacity:0;pointer-events:none;background:var(--cornflower);-webkit-mask:var(--heart-mask) center/contain no-repeat;mask:var(--heart-mask) center/contain no-repeat}
+.ih:nth-of-type(even){background:var(--honey)}
+.ih:nth-of-type(3n){background:var(--ink)}
+.intro.is-open .ih{animation:heartUp 1.5s ease-out forwards}
+.ticket-cta .btn{position:relative}
+.done-script{display:inline-block}
+.confetti{position:absolute;left:0;right:0;top:0;height:0;z-index:3;pointer-events:none}
+.confetti i{position:absolute;left:var(--x);top:-4px;width:8px;height:12px;border-radius:2px;opacity:0;animation:confettiFall var(--t) cubic-bezier(.2,.6,.4,1) forwards}
+.confetti i.round{width:9px;height:9px;border-radius:50%}
+.confetti i.heart{width:13px;height:12px;border-radius:0;-webkit-mask:var(--heart-mask) center/contain no-repeat;mask:var(--heart-mask) center/contain no-repeat}
+.guest-done{position:relative}
+.tap-spark{position:fixed;z-index:70;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;pointer-events:none;-webkit-mask:var(--star-mask) center/contain no-repeat;mask:var(--star-mask) center/contain no-repeat;animation:spark .8s cubic-bezier(.2,.7,.3,1) forwards}
+.scroll-ride{display:none}
+
+html.anim .hb{animation:balloonIn 1.7s cubic-bezier(.2,.8,.25,1) both,hbFloat 8s ease-in-out infinite}
+html.anim .hb1{animation-delay:.45s,2.15s}
+html.anim .hb2{animation-delay:.8s,2.5s;animation-duration:1.7s,9.6s}
+html.anim .hb3{animation-delay:.6s,2.3s;animation-duration:1.7s,7.3s}
+html.anim .hb4{animation-delay:.95s,2.65s;animation-duration:1.7s,10.4s}
+html.anim .spk{animation:twinkle 3.3s ease-in-out infinite}
+html.anim .spk:nth-of-type(2n){animation-duration:2.7s;animation-delay:-1.2s}
+html.anim .spk:nth-of-type(3n){animation-duration:3.9s;animation-delay:-2.1s}
+html.anim .spk:nth-of-type(5n){animation-delay:-.6s}
+html.anim .stork-track{animation:storkFly 26s linear -9s infinite}
+html.anim .stork-bob{animation:storkBob 2.6s ease-in-out infinite}
+html.anim .wing-near{animation:flap .78s ease-in-out infinite alternate}
+html.anim .wing-far{animation:flap .78s ease-in-out -.1s infinite alternate}
+html.anim .flourish path{stroke-dasharray:1 1;stroke-dashoffset:1}
+html.anim .flourish use{opacity:0}
+html.anim .is-in + .flourish path{animation:draw 1.1s ease .95s forwards}
+html.anim .is-in + .flourish use{transform-box:fill-box;transform-origin:50% 50%;animation:heartPop .6s cubic-bezier(.3,1.6,.5,1) 1.75s both}
+html.anim .duck{animation:duckBob 2.6s ease-in-out infinite,duckSwim 16s ease-in-out infinite}
+html.anim .secret.is-in .hand-h{animation:hourTo2 1.7s cubic-bezier(.45,0,.2,1) .7s both}
+html.anim .secret.is-in .hand-m{animation:minSpin 1.7s cubic-bezier(.45,0,.2,1) .7s both}
+html.anim .secret.is-in .gift{animation:giftHop .95s cubic-bezier(.3,1.5,.5,1) 1.55s both}
+html.anim .trail:not(.is-in) .fp{opacity:0}
+html.anim .trail.is-in .fp{animation:footIn .5s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(var(--i) * .26s + .2s)}
+html.anim .toy{animation:toyFloat 9s ease-in-out infinite}
+html.anim .t2{animation-duration:10.5s;animation-delay:-3s}
+html.anim .t3{animation-duration:8.2s;animation-delay:-5s}
+html.anim .t4{animation-duration:11.4s;animation-delay:-1.5s}
+html.anim .t5{animation-duration:9.8s;animation-delay:-6.5s}
+html.anim .bear-small.is-in{transform-origin:50% 100%;animation:rock 5.6s ease-in-out 1.3s infinite}
+html.anim .ticket:not(.is-in) .t-icon{opacity:0}
+html.anim .ticket.is-in .t-icon{animation:popIn .55s cubic-bezier(.3,1.6,.5,1) .25s both}
+html.anim .ticket.is-in .t-item:nth-child(2) .t-icon{animation-delay:.4s}
+html.anim .ticket.is-in .t-item:nth-child(3) .t-icon{animation-delay:.55s}
+html.anim .ticket-cta.is-in .btn::after{content:"";position:absolute;top:-6px;right:-6px;bottom:-6px;left:-6px;border-radius:999px;border:2px solid var(--powder);opacity:0;pointer-events:none;animation:ctaRing 3.6s ease-out 2.2s infinite}
+html.anim .essentials:not(.is-live) .ticket-cta .btn::after{animation-play-state:paused}
+html.anim .done-script.is-written{animation:write 1.2s cubic-bezier(.45,.05,.3,1) both}
+html.anim [data-ambient]:not(.is-live) .amb{animation-play-state:paused}
+html.lite .amb{animation:none!important}
+html.lite .stork-track{left:5%}
+html.lite .ticket-cta .btn::after{display:none}
+@supports (animation-timeline:scroll()){
+  html.anim:not(.intro-on) .scroll-ride{display:block;position:fixed;top:0;left:0;right:0;height:3px;z-index:45;pointer-events:none}
+  .sr-line{position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(90deg,var(--sky),var(--cornflower));transform-origin:0 50%;animation:grow linear both;animation-timeline:scroll(root)}
+  .sr-heart{position:absolute;top:-4px;left:-6px;width:12px;height:11px;background:var(--cornflower);-webkit-mask:var(--heart-mask) center/contain no-repeat;mask:var(--heart-mask) center/contain no-repeat;animation:ride linear both;animation-timeline:scroll(root)}
+}
+
 /* ---------- Music box ---------- */
 .music{position:fixed;z-index:30;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border:0;border-radius:999px;background:var(--deep);color:var(--paper);font-family:var(--font-caps);font-weight:600;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 26px -10px rgba(31,61,102,.55);transition:transform .2s,background-color .2s}
 .music:hover{transform:translateY(-2px);background:var(--ink)}
@@ -551,6 +656,24 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
 @keyframes shine{0%{opacity:0;transform:translateX(-160%) skewX(-12deg)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(330%) skewX(-12deg)}}
 @keyframes cornerIn{from{opacity:0;transform:scale(1.35)}to{opacity:1;transform:none}}
 @keyframes pixFloat{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-14px) rotate(6deg)}}
+@keyframes balloonIn{from{opacity:0;transform:translateY(150px) rotate(-8deg)}to{opacity:1;transform:translateY(0) rotate(-3deg)}}
+@keyframes hbFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-16px) rotate(3deg)}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.55) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+@keyframes storkFly{from{transform:translateX(-180px)}to{transform:translateX(calc(100vw + 30px))}}
+@keyframes storkBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(8px) rotate(2deg)}}
+@keyframes flap{from{transform:rotate(-8deg)}to{transform:rotate(34deg)}}
+@keyframes duckBob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-12%) rotate(6deg)}}
+@keyframes duckSwim{0%,100%{translate:0 0}50%{translate:260% 0}}
+@keyframes hourTo2{from{transform:rotate(0)}to{transform:rotate(60deg)}}
+@keyframes minSpin{from{transform:rotate(0)}to{transform:rotate(720deg)}}
+@keyframes giftHop{0%,100%{transform:none}30%{transform:translateY(-7px) rotate(-7deg)}55%{transform:translateY(0) rotate(5deg)}78%{transform:rotate(-2deg)}}
+@keyframes footIn{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes toyFloat{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-14px) rotate(8deg)}}
+@keyframes rock{0%,100%{transform:rotate(0)}25%{transform:rotate(-3.5deg)}75%{transform:rotate(3.5deg)}}
+@keyframes ctaRing{0%{opacity:.85;transform:scale(.97)}60%,100%{opacity:0;transform:scale(1.13)}}
+@keyframes confettiFall{0%{opacity:1;transform:translate(0,-24px) rotate(0)}100%{opacity:0;transform:translate(var(--dx),300px) rotate(var(--r))}}
+@keyframes spark{0%{opacity:1;transform:rotate(var(--a)) translateY(0) scale(.3)}70%{opacity:1}100%{opacity:0;transform:rotate(var(--a)) translateY(calc(var(--d) * -1)) scale(1)}}
+@keyframes ride{from{transform:translateX(0)}to{transform:translateX(calc(100vw - 8px))}}
 @keyframes cardUp{from{transform:translateY(46px)}to{transform:translateY(0)}}
 @keyframes tickPop{0%,100%{transform:translateX(-50%) scale(1)}40%{transform:translateX(-50%) scale(1.12)}}
 @keyframes noteUp{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(12px,-46px) rotate(18deg)}}
@@ -561,6 +684,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
 @keyframes introOut{to{opacity:0;transform:scale(1.05)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
+:root{--star-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 0C12.9 6.4 17.6 11.1 24 12 17.6 12.9 12.9 17.6 12 24 11.1 17.6 6.4 12.9 0 12 6.4 11.1 11.1 6.4 12 0Z'/></svg>")}
 :root{--heart-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'><path d='M12 21.2s-9.6-6.2-9.6-12.6C2.4 4.9 5 2.6 8 2.6c1.8 0 3.2.9 4 2.2.8-1.3 2.2-2.2 4-2.2 3 0 5.6 2.3 5.6 6 0 6.4-9.6 12.6-9.6 12.6z'/></svg>")}
 </style>
 </head>
@@ -591,6 +715,8 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <stop offset=".5" stop-color="#ffffff" stop-opacity=".06"/>
       <stop offset="1" stop-color="#0b1f3a" stop-opacity=".14"/>
     </radialGradient>
+    <symbol id="star4" viewBox="0 0 24 24"><path d="M12 0C12.9 6.4 17.6 11.1 24 12 17.6 12.9 12.9 17.6 12 24 11.1 17.6 6.4 12.9 0 12 6.4 11.1 11.1 6.4 12 0Z"/></symbol>
+    <symbol id="foot" viewBox="0 0 22 34"><path d="M11.6 33.2c-4.6 0-6.4-3.6-6.2-8.2.2-4 2-6.6 2-10.2 0-3.4 2-5.4 5-5.4 3.4 0 5.4 2.6 5.2 6.6-.2 3.8-1.8 6-1.6 9.6.2 4.2.6 7.6-4.4 7.6z"/><circle cx="15.6" cy="5.2" r="2.7"/><circle cx="11.2" cy="3.4" r="2.05"/><circle cx="7.6" cy="4.4" r="1.75"/><circle cx="5" cy="6.8" r="1.5"/><circle cx="3.4" cy="9.9" r="1.3"/></symbol>
     <symbol id="heart" viewBox="0 0 24 22"><path d="M12 21.2s-9.6-6.2-9.6-12.6C2.4 4.9 5 2.6 8 2.6c1.8 0 3.2.9 4 2.2.8-1.3 2.2-2.2 4-2.2 3 0 5.6 2.3 5.6 6 0 6.4-9.6 12.6-9.6 12.6z"/></symbol>
     <symbol id="balloon" viewBox="0 0 120 176">
       <path d="M60 4C93 4 114 30 114 61c0 35-27 62-50 68l-4 1-4-1C33 123 6 96 6 61 6 30 27 4 60 4z" fill="currentColor"/>
@@ -636,7 +762,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <svg class="env-flap" viewBox="0 0 300 116" preserveAspectRatio="none">
         <path d="M0 0H300L150 116Z" style="fill:var(--white);stroke:var(--powder)" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
       </svg>
-      <span class="env-seal">B</span>
+      <span class="env-seal">B</span><span class="ih" style="--dx:-90px;--rot:-24deg;animation-delay:0.74s"></span><span class="ih" style="--dx:-48px;--rot:-10deg;animation-delay:0.8s"></span><span class="ih" style="--dx:-10px;--rot:6deg;animation-delay:0.7s"></span><span class="ih" style="--dx:30px;--rot:14deg;animation-delay:0.86s"></span><span class="ih" style="--dx:72px;--rot:22deg;animation-delay:0.78s"></span><span class="ih" style="--dx:104px;--rot:30deg;animation-delay:0.92s"></span><span class="ih" style="--dx:-120px;--rot:-30deg;animation-delay:0.9s"></span>
     </div>
     <div class="intro-actions">
       <button class="btn" type="button" data-open="plain">Abrir convite</button>
@@ -670,6 +796,13 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
 </script>
 
 <header class="hero scallop-bottom" data-ambient>
+  <div class="hero-deco" aria-hidden="true">
+    <svg class="hb hb1 amb" viewBox="0 0 120 176"><use href="#balloon"/></svg>
+    <svg class="hb hb2 amb" viewBox="0 0 120 176"><use href="#balloon"/></svg>
+    <svg class="hb hb3 amb" viewBox="0 0 120 176"><use href="#balloon"/></svg>
+    <svg class="hb hb4 amb" viewBox="0 0 120 176"><use href="#balloon"/></svg>
+    <svg class="spk amb s1" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb s2" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb s3" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb s4" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb s5" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb s6" viewBox="0 0 24 24"><use href="#star4"/></svg>
+  </div>
   <div class="oval">
     <svg class="arc" viewBox="0 0 440 124" role="img" aria-label="Save the Date">
       <path id="arc-path" d="M22 118C112 24 328 24 418 118" fill="none"/>
@@ -684,7 +817,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
 </header>
 
 <main>
-  <section class="essentials" aria-label="Resumo do chá">
+  <section class="essentials" aria-label="Resumo do chá" data-ambient>
     <div class="wrap">
       <div class="ticket" data-reveal>
         <div class="t-item">
@@ -771,10 +904,11 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <div class="letter" data-reveal style="--d:.15s">
         <p class="eyebrow">Save the Date</p>
         <h2 id="std-title" class="script-h" data-reveal="write" style="--d:.35s">Reserve esta data</h2>
+        <svg class="flourish" viewBox="0 0 160 20" aria-hidden="true"><path pathLength="1" d="M6 12c14-9 30 6 46 0 8-3 12-8 18-8M90 4c6 0 10 5 18 8 16 6 32-9 46 0"/><use href="#heart" x="71" y="2" width="18" height="16"/></svg>
         <p class="lede">Com muita alegria, queremos compartilhar com vocês essa data especial!</p>
         <p>Reserve o dia <strong>29/11</strong> para celebrarmos juntos a chegada do nosso pequeno Bryan.</p>
         <p>O chá começa às <strong>14h</strong>. Logo abaixo estão o endereço, a sugestão de mimo e a lista de convidados para você confirmar sua presença.</p>
-        <p class="signature">Com amor,<span>família do Bryan</span></p>
+        <p class="signature" data-reveal="write" style="--d:.5s">Com amor,<span>família do Bryan</span></p>
         <div class="cal-actions">
           <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ch%C3%A1%20do%20Bryan&amp;dates=20261129T170000Z/20261129T210000Z&amp;ctz=America/Sao_Paulo&amp;details=Ch%C3%A1%20do%20Bryan%3A%20venha%20celebrar%20com%20a%20gente%20a%20chegada%20do%20nosso%20pequeno%20Bryan%21%20Come%C3%A7a%20%C3%A0s%2014h.%20Local%3A%20Rua%20Dezesseis%2C%20%C3%BAltima%20casa%20da%20rua%20-%20Jardim%20Tr%C3%AAs%20Marias%20%28Enseada%29%2C%20Guaruj%C3%A1%20-%20SP%2C%20CEP%2011440-274.%20A%20rua%20fica%20na%20Av.%20Dom%20Pedro%20I%2C%20ao%20lado%20da%20loja%20Center%20Castilho.%20Sugest%C3%A3o%20de%20mimo%3A%20fraldas%2C%20len%C3%A7os%20umedecidos%20e%20itens%20b%C3%A1sicos%20para%20o%20beb%C3%AA.%20Confirme%20sua%20presen%C3%A7a%20na%20lista%3A%20https%3A%2F%2Fchadobryan.vercel.app%2F%23lista&amp;location=R.%20Dezesseis%20-%20Jardim%20Tr%C3%AAs%20Marias%2C%20Guaruj%C3%A1%20-%20SP%2C%2011440-274" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
@@ -791,6 +925,28 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
   </section>
 
   <section class="countdown scallop-top scallop-bottom" aria-labelledby="cd-title" data-ambient>
+    <div class="sky-deco" aria-hidden="true">
+      <svg class="spk amb k1" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb k2" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb k3" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb k4" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb k5" viewBox="0 0 24 24"><use href="#star4"/></svg>
+      <div class="stork-track amb"><div class="stork-bob amb">
+        <svg class="stork" viewBox="0 0 230 150">
+          <g class="wing-far amb"><path d="M104 58C98 34 86 18 62 8c8 14 10 26 16 40 6 10 16 14 26 10z" style="fill:var(--sky)"/></g>
+          <path d="M74 84 34 99M80 86 44 104" fill="none" style="stroke:var(--honey)" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M46 72 20 62l8 11-10 9z" style="fill:var(--ink)"/>
+          <path d="M114 68c12-6 22-14 30-24 3-4 6-6 9-6" fill="none" style="stroke:var(--sky)" stroke-width="11.5" stroke-linecap="round"/>
+          <path d="M42 72c12-18 52-24 82-12 14 6 16 18 4 23-26 11-66 10-86-11z" style="fill:var(--white);stroke:var(--sky)" stroke-width="1.6"/>
+          <path d="M114 68c12-6 22-14 30-24 3-4 6-6 9-6" fill="none" style="stroke:var(--white)" stroke-width="8.4" stroke-linecap="round"/>
+          <circle cx="152" cy="40" r="10" style="fill:var(--white);stroke:var(--sky)" stroke-width="1.6"/>
+          <circle cx="155" cy="37.5" r="1.7" style="fill:var(--deep)"/>
+          <path d="M160 36 202 47l-41 4z" style="fill:var(--honey)"/>
+          <path d="M196 47c1 7-1 12-5 16" fill="none" style="stroke:var(--powder)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M191 59c14 2 19 22 9 33-9 10-26 6-28-8-2-12 7-26 19-25z" style="fill:var(--sky);stroke:var(--cornflower)" stroke-width="1.6"/>
+          <path d="M186 60c2-5 8-6 11-2" fill="none" style="stroke:var(--cornflower)" stroke-width="1.6" stroke-linecap="round"/>
+          <use href="#heart" x="180" y="73" width="14" height="13" style="fill:var(--white)"/>
+          <g class="wing-near amb"><path d="M98 62C90 36 74 18 46 10c10 14 12 28 18 42 6 12 22 18 34 10z" style="fill:var(--white);stroke:var(--sky)" stroke-width="1.6"/>
+          <path d="M46 10c6 6 8 10 9 15M52 9c6 6 9 11 10 17M58 10c6 6 9 12 10 18" fill="none" style="stroke:var(--ink)" stroke-width="3.2" stroke-linecap="round"/></g>
+        </svg>
+      </div></div>
+    </div>
     <div class="cloud c1" aria-hidden="true"></div>
     <div class="cloud c2" aria-hidden="true"></div>
     <div class="cloud c3" aria-hidden="true"></div>
@@ -798,21 +954,23 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
     <div class="wrap cd-inner">
       <p class="eyebrow">Contagem regressiva</p>
       <h2 id="cd-title" class="script-h" data-reveal="write">Falta pouquinho, Bryan!</h2>
+        <svg class="flourish" viewBox="0 0 160 20" aria-hidden="true"><path pathLength="1" d="M6 12c14-9 30 6 46 0 8-3 12-8 18-8M90 4c6 0 10 5 18 8 16 6 32-9 46 0"/><use href="#heart" x="71" y="2" width="18" height="16"/></svg>
       <div class="balloons" role="timer" aria-live="off" data-reveal="group">
-        <div class="bl bl-d"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-d">51</span><span class="unit" id="u-d">dias</span></div>
-        <div class="bl bl-h"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-h">06</span><span class="unit" id="u-h">horas</span></div>
-        <div class="bl bl-m"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-m">12</span><span class="unit" id="u-m">minutos</span></div>
-        <div class="bl bl-s"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-s">25</span><span class="unit" id="u-s">segundos</span></div>
+        <div class="bl bl-d"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-d">50</span><span class="unit" id="u-d">dias</span></div>
+        <div class="bl bl-h"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-h">11</span><span class="unit" id="u-h">horas</span></div>
+        <div class="bl bl-m"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-m">09</span><span class="unit" id="u-m">minutos</span></div>
+        <div class="bl bl-s"><svg viewBox="0 0 120 176" aria-hidden="true"><use href="#balloon"/></svg><span class="num" id="cd-s">38</span><span class="unit" id="u-s">segundos</span></div>
       </div>
       <p class="cd-note" id="cd-note" data-reveal style="--d:.5s">até domingo, 29 de novembro, às 14h, no Guarujá</p>
     </div>
   </section>
 
-  <section class="secrets" aria-labelledby="sec-title">
+  <section class="secrets" aria-labelledby="sec-title" data-ambient>
     <div class="wrap">
       <div class="secrets-head">
         <p class="eyebrow">Detalhes do chá</p>
         <h2 id="sec-title" class="script-h" data-reveal="write">Onde vai ser</h2>
+        <svg class="flourish" viewBox="0 0 160 20" aria-hidden="true"><path pathLength="1" d="M6 12c14-9 30 6 46 0 8-3 12-8 18-8M90 4c6 0 10 5 18 8 16 6 32-9 46 0"/><use href="#heart" x="71" y="2" width="18" height="16"/></svg>
         <p class="section-lede">O local já está confirmado! Toque nos botões para abrir o caminho no mapa ou veja abaixo como chegar.</p>
       </div>
       <article class="place" id="local" aria-labelledby="place-title" data-reveal>
@@ -865,6 +1023,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
               </g>
             </g>
           </svg>
+          <svg class="duck amb" viewBox="0 0 24 18" aria-hidden="true"><path d="M3 11c0 3.6 3.4 5.6 8.4 5.6 5.4 0 9-2 9-5.6 0-1.8-1.4-2.6-3-2.6h-1.4c1.6-.8 2.4-2.4 2-4.2-.6-2.4-3.4-3.6-5.6-2.4-2 1.1-2.4 3.6-1.2 5.6-2.4-.4-5 .2-6.6 1.4C4 8.2 3 9.2 3 11z" fill="#F2D58A"/><path d="M17 4.6l4.4.8-3.6 1.8z" style="fill:var(--honey)"/><circle cx="14.4" cy="4.4" r=".9" style="fill:var(--deep)"/><path d="M8.6 11.4c1.8 1.6 4.4 1.6 6 0" fill="none" stroke="#D9B45E" stroke-width="1.1" stroke-linecap="round"/></svg>
         </div>
         <div class="place-info">
           <p class="place-tag"><svg viewBox="0 0 24 22" aria-hidden="true"><use href="#heart"/></svg>Local confirmado</p>
@@ -896,7 +1055,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
             <svg viewBox="0 0 220 176"><use href="#env-open-back"/><g class="env-card"><rect x="30" y="20" width="160" height="124" rx="6" style="fill:var(--paper);stroke:var(--sky)" stroke-width="1.5"/><text x="110" y="62" text-anchor="middle" style="font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:30px;fill:var(--deep)">14h</text></g><use href="#env-open-front"/></svg>
           </figure>
           <div class="secret-text">
-            <h3><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.6V12l3 2"/></svg>Horário</h3>
+            <h3><svg class="clock-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path class="hand-h" d="M12 12V8.3"/><path class="hand-m" d="M12 12V5.8"/></svg>Horário</h3>
             <p class="plan-big">14h</p>
             <p>Domingo, 29 de novembro de 2026.</p>
             <a class="t-link" href="#lista">Confirmar presença<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
@@ -904,7 +1063,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
         </li>
         <li class="secret" id="mimo" data-reveal style="--d:.2s">
           <figure class="env-fig" aria-hidden="true">
-            <svg viewBox="0 0 220 176"><use href="#env-open-back"/><g class="env-card"><rect x="30" y="20" width="160" height="124" rx="6" style="fill:var(--paper);stroke:var(--sky)" stroke-width="1.5"/><g transform="translate(110 54)"><path d="M-17 -6h34v22h-34z M-20 -12h40v6h-40z M0 -12v28 M0 -12c-3-7-11-9-12-4-1 4 5 4 12 4zm0 0c3-7 11-9 12-4 1 4-5 4-12 4z" fill="none" style="stroke:var(--ink)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></g></g><use href="#env-open-front"/></svg>
+            <svg viewBox="0 0 220 176"><use href="#env-open-back"/><g class="env-card"><rect x="30" y="20" width="160" height="124" rx="6" style="fill:var(--paper);stroke:var(--sky)" stroke-width="1.5"/><g transform="translate(110 54)"><g class="gift"><path d="M-17 -6h34v22h-34z M-20 -12h40v6h-40z M0 -12v28 M0 -12c-3-7-11-9-12-4-1 4 5 4 12 4zm0 0c3-7 11-9 12-4 1 4-5 4-12 4z" fill="none" style="stroke:var(--ink)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></g></g></g><use href="#env-open-front"/></svg>
           </figure>
           <div class="secret-text">
             <h3><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9.5" width="16" height="10.5" rx="1.4"/><path d="M3 9.5h18M12 9.5V20M12 9.5c-1.3-2.9-4.8-3.9-5.4-1.9-.5 1.6 2.3 1.9 5.4 1.9zm0 0c1.3-2.9 4.8-3.9 5.4-1.9.5 1.6-2.3 1.9-5.4 1.9z"/></svg>Sugestão de mimo</h3>
@@ -926,10 +1085,12 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
   </section>
 
   <section class="guests" id="lista" aria-labelledby="lista-title">
+    <svg class="trail" viewBox="0 0 440 62" aria-hidden="true" data-reveal="group"><g class="fp" style="--i:0"><use href="#foot" width="19" height="29" transform="translate(28 19.0) rotate(84) translate(-9.5 -14.5)"/></g><g class="fp" style="--i:1"><use href="#foot" width="19" height="29" transform="translate(83 41.8) rotate(96) scale(-1 1) translate(-9.5 -14.5)"/></g><g class="fp" style="--i:2"><use href="#foot" width="19" height="29" transform="translate(138 16.6) rotate(84) translate(-9.5 -14.5)"/></g><g class="fp" style="--i:3"><use href="#foot" width="19" height="29" transform="translate(193 39.4) rotate(96) scale(-1 1) translate(-9.5 -14.5)"/></g><g class="fp" style="--i:4"><use href="#foot" width="19" height="29" transform="translate(248 14.2) rotate(84) translate(-9.5 -14.5)"/></g><g class="fp" style="--i:5"><use href="#foot" width="19" height="29" transform="translate(303 37.0) rotate(96) scale(-1 1) translate(-9.5 -14.5)"/></g><g class="fp" style="--i:6"><use href="#foot" width="19" height="29" transform="translate(358 11.8) rotate(84) translate(-9.5 -14.5)"/></g><g class="fp" style="--i:7"><use href="#foot" width="19" height="29" transform="translate(413 34.6) rotate(96) scale(-1 1) translate(-9.5 -14.5)"/></g></svg>
     <div class="wrap guests-grid">
       <div class="guests-intro" data-reveal>
         <p class="eyebrow">Lista de convidados</p>
         <h2 id="lista-title" class="script-h" data-reveal="write">Confirme sua presença</h2>
+        <svg class="flourish" viewBox="0 0 160 20" aria-hidden="true"><path pathLength="1" d="M6 12c14-9 30 6 46 0 8-3 12-8 18-8M90 4c6 0 10 5 18 8 16 6 32-9 46 0"/><use href="#heart" x="71" y="2" width="18" height="16"/></svg>
         <p class="lede">Para organizar a entrada no dia, precisamos do nome completo e de um documento de cada pessoa.</p>
         <ol class="steps">
           <li><span><strong>Você envia</strong> seu nome, documento e quem vem com você.</span></li>
@@ -981,6 +1142,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <div class="pix-head">
         <p class="eyebrow">Pix opcional</p>
         <h2 id="pix-title" class="script-h" data-reveal="write">Um mimo em Pix</h2>
+        <svg class="flourish" viewBox="0 0 160 20" aria-hidden="true"><path pathLength="1" d="M6 12c14-9 30 6 46 0 8-3 12-8 18-8M90 4c6 0 10 5 18 8 16 6 32-9 46 0"/><use href="#heart" x="71" y="2" width="18" height="16"/></svg>
         <p class="section-lede">Se for mais prático para você, o mimo também pode ser um Pix, de qualquer valor. É totalmente opcional: o que importa mesmo é ter você com a gente.</p>
       </div>
       <div class="pix-stage">
@@ -1022,10 +1184,18 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
       <p class="pix-note" data-reveal><svg viewBox="0 0 24 22" aria-hidden="true"><use href="#heart"/></svg>Sem obrigação nenhuma, viu? Sua presença já é o nosso maior presente.</p>
     </div>
   </section>
-  <section class="love scallop-top" aria-labelledby="love-title">
+  <section class="love scallop-top" aria-labelledby="love-title" data-ambient>
+    <div class="love-deco" aria-hidden="true">
+      <svg class="toy t1 amb" viewBox="0 0 48 48"><path d="M8 28c0 8 7 12 16 12s16-4 16-11c0-4-3-6-6-6h-2c3-2 4-5 3-8-1-5-6-7-10-5-4 2-5 7-3 11-4-1-9 0-12 2-1-1-2 0-2 1z"/><path d="M33 13l6 1.5-5 2.5"/><circle class="dot" cx="29" cy="12" r="1.2"/><path d="M17 29c3 3 8 3 11 0"/></svg>
+      <svg class="toy t2 amb" viewBox="0 0 48 48"><circle cx="24" cy="35" r="7.5"/><path d="M10 22c0-4 6-6 14-6s14 2 14 6-6 6-14 6-14-2-14-6z"/><path d="M19 16c0-7 2-10 5-10s5 3 5 10"/></svg>
+      <svg class="toy t3 amb" viewBox="0 0 48 48"><rect x="15" y="18" width="18" height="25" rx="6"/><rect x="14" y="13" width="20" height="5" rx="2"/><path d="M19 13c0-6 2-8 5-8s5 2 5 8M20 26h5M20 31h7M20 36h5"/></svg>
+      <svg class="toy t4 amb" viewBox="0 0 48 48"><circle cx="18" cy="18" r="11"/><path d="M26 26l11 11"/><circle cx="39.5" cy="39.5" r="4"/><circle class="dot" cx="14" cy="15" r="1.6"/><circle class="dot" cx="21" cy="21" r="1.6"/><circle class="dot" cx="20" cy="13" r="1.6"/></svg>
+      <svg class="toy t5 amb" viewBox="0 0 48 48"><path d="M17 6h14l9 8-5 5-3-3v19c0 5-3 8-8 8s-8-3-8-8V16l-3 3-5-5z"/><path d="M19 6c1 4 9 4 10 0M20 43v-4h8v4"/></svg>
+    </div>
     <div class="wrap">
       <p class="eyebrow">Recadinho para o Bryan</p>
       <h2 id="love-title" class="script-h" data-reveal="write">Mande um carinho</h2>
+        <svg class="flourish" viewBox="0 0 160 20" aria-hidden="true"><path pathLength="1" d="M6 12c14-9 30 6 46 0 8-3 12-8 18-8M90 4c6 0 10 5 18 8 16 6 32-9 46 0"/><use href="#heart" x="71" y="2" width="18" height="16"/></svg>
       <p class="section-lede">Toque nas reações para mostrar seu carinho. Se quiser, escreva um recado e envie para a família pelo WhatsApp.</p>
       <div class="reactions" role="group" aria-label="Reações para o Bryan" data-reveal="group">
         <button class="react" type="button" aria-pressed="false" data-emoji="💙" data-say="Que amor!"><span class="r-emoji" aria-hidden="true">💙</span><span class="r-label">Amor</span></button>
@@ -1053,6 +1223,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
 </main>
 
 <footer class="closing" data-ambient>
+  <div class="closing-deco" aria-hidden="true"><svg class="spk amb f1" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb f2" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb f3" viewBox="0 0 24 24"><use href="#star4"/></svg><svg class="spk amb f4" viewBox="0 0 24 24"><use href="#star4"/></svg></div>
   <svg class="bunting" data-reveal="group" viewBox="0 0 1000 250" role="img" aria-label="Varal de bandeirinhas com o nome Bryan">
     <path d="M-10 30Q500 170 1010 30" fill="none" style="stroke:var(--honey)" stroke-width="3" stroke-linecap="round"/>
     <g transform="translate(210 77.4) rotate(8.87)"><g class="pennant" style="--i:0"><path d="M-60 -3H60L0 138Z" style="fill:url(#gh)" stroke="rgba(31,61,102,.16)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="0" cy="47" r="29" style="fill:var(--white)"/><text class="letter-t" x="0" y="49" text-anchor="middle" dominant-baseline="middle">B</text></g></g>
@@ -1067,10 +1238,12 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
     <use href="#heart" x="706.5" y="80.3" width="22" height="20" style="fill:var(--honey)"/>
     <use href="#heart" x="879.0" y="52.1" width="22" height="20" style="fill:var(--honey)"/>
   </svg>
-  <img data-bear data-reveal="pop" class="bear-small" width="498" height="652" alt="">
+  <img data-bear data-reveal="pop" class="bear-small amb" width="498" height="652" alt="">
   <p class="closing-script" data-reveal="write" style="--d:.2s">Mal podemos esperar para te conhecer!</p>
   <p class="closing-caps" data-reveal style="--d:.4s">Chá do Bryan · 29.11.2026</p>
 </footer>
+
+<div class="scroll-ride" aria-hidden="true"><span class="sr-line"></span><span class="sr-heart"></span></div>
 
 <button class="music" id="music" type="button" aria-pressed="false" aria-label="Tocar canção de ninar, Brilha, brilha, estrelinha">
   <svg class="ico-note" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5.5l10-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
@@ -1168,7 +1341,7 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
               ?"Já tínhamos um pedido com esse documento e ele já foi analisado pela família. Se precisar mudar algo, fale com ela."
               :(d.atualizado?"Atualizamos o seu pedido. Agora é só aguardar a confirmação da família."
                 :"Seu nome está aguardando a confirmação da família. Até o dia 29!");
-            gForm.hidden=true;gDone.hidden=false;
+            gForm.hidden=true;gDone.hidden=false;celebrate(gDone);
             try{gDone.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});}catch(err){}
           }else{gMsg.textContent=(d&&d.erro)||"Não conseguimos enviar agora. Tente de novo em alguns minutos.";}
         })
@@ -1246,6 +1419,45 @@ html.lite .bunting.is-in .pennant{animation:pennantDrop .8s cubic-bezier(.3,1.3,
   });
   $("pix-copy-key").addEventListener("click",function(){
     pixCopy(this,"Chave copiada! No app do banco, escolha Pix com chave de celular.",$("pix-key"),"Chave selecionada. É só copiar.");
+  });
+
+  /* ---------- Little celebrations ---------- */
+  var fxOff=function(){return reduce||!root.classList.contains("anim")||root.classList.contains("lite");};
+  function celebrate(host){
+    var title=host.querySelector(".done-script");
+    if(title){title.classList.remove("is-written");void title.offsetWidth;title.classList.add("is-written");}
+    if(fxOff())return;
+    var box=document.createElement("div");box.className="confetti";box.setAttribute("aria-hidden","true");
+    var colors=["var(--ink)","var(--cornflower)","var(--powder)","var(--sky)","var(--sand)","var(--honey)"];
+    for(var i=0;i<36;i++){
+      var p=document.createElement("i");
+      p.style.setProperty("--x",(4+Math.random()*92).toFixed(1)+"%");
+      p.style.setProperty("--dx",Math.round(Math.random()*140-70)+"px");
+      p.style.setProperty("--r",Math.round(Math.random()*760-380)+"deg");
+      p.style.setProperty("--t",(1.7+Math.random()*1.3).toFixed(2)+"s");
+      p.style.animationDelay=(Math.random()*.4).toFixed(2)+"s";
+      p.style.background=colors[i%colors.length];
+      if(i%3===0)p.className="round";else if(i%4===1)p.className="heart";
+      box.appendChild(p);
+    }
+    host.appendChild(box);
+    setTimeout(function(){if(box.parentNode)box.parentNode.removeChild(box);},3600);
+  }
+  var lastSpark=0,sparkColors=["var(--cornflower)","var(--powder)","var(--honey)","var(--ink)"];
+  document.addEventListener("click",function(e){
+    if(fxOff()||root.classList.contains("intro-on"))return;
+    var t=e.target;
+    if(t&&t.closest&&t.closest("a,button,input,textarea,select,label,summary,details,.ticket,.place,.pix-card,.note-card,.calendar"))return;
+    var now=Date.now();if(now-lastSpark<220)return;lastSpark=now;
+    for(var i=0;i<5;i++){
+      var sp=document.createElement("span");sp.className="tap-spark";sp.setAttribute("aria-hidden","true");
+      sp.style.left=e.clientX+"px";sp.style.top=e.clientY+"px";
+      sp.style.background=sparkColors[i%sparkColors.length];
+      sp.style.setProperty("--a",Math.round(i*72+Math.random()*40)+"deg");
+      sp.style.setProperty("--d",Math.round(20+Math.random()*18)+"px");
+      document.body.appendChild(sp);
+      setTimeout(function(n){return function(){if(n.parentNode)n.parentNode.removeChild(n);};}(sp),900);
+    }
   });
 
   /* ---------- Pet the bear: little hearts ---------- */
